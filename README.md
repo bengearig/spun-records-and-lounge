@@ -177,3 +177,13 @@ Images are inlined into the PDF, so the output is self-contained. PNG, JPEG, GIF
 | `cmd/`      | Entry points. `cmd/spun` is the `spun` command.                                           |
 | `internal/` | The implementation: bundle loading, Markdown rendering, templates, features, and PDF output. |
 | `docs/`     | Home for the business's plans and operating documents, as `spun` bundles.             |
+
+## License
+
+| Paths                                           | License                                  | File                               |
+| ----------------------------------------------- | ---------------------------------------- | ---------------------------------- |
+| `cmd/`, `internal/`, and other source code      | MIT                                      | [`LICENSE`](LICENSE)               |
+| `docs/` (business plans, reports, written content) | Creative Commons Attribution 4.0 International | [`LICENSE-CONTENT`](LICENSE-CONTENT) |
+
+Third-party assets keep their own licenses. In particular, the vendored KaTeX files under
+`internal/features/math/assets/` are covered by the license in that directory, not by `LICENSE`.
