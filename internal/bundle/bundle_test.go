@@ -189,3 +189,28 @@ func TestFeatureMath(t *testing.T) {
 		}
 	}
 }
+
+func TestBusinessPlanBundle(t *testing.T) {
+	b, err := Load(filepath.Join("..", "..", "docs", "business-plan"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	c := b.Config
+	if c.Title != "Spun Records and Lounge: Business Plan" {
+		t.Errorf("title = %q", c.Title)
+	}
+	want := []string{
+		"01-executive-summary.md", "02-concept-and-vision.md", "03-market-analysis.md",
+		"04-products-and-services.md", "05-operations-and-location.md", "06-licensing-and-legal.md",
+		"07-marketing.md", "08-organization.md", "09-financial-plan.md", "10-risks.md", "11-appendices.md",
+	}
+	if !reflect.DeepEqual(c.Documents, want) {
+		t.Errorf("documents = %v, want %v", c.Documents, want)
+	}
+	if !c.Features["math"].Enabled {
+		t.Error("math not enabled")
+	}
+	if c.Numbering.Depth != 3 {
+		t.Errorf("numbering depth = %d, want 3", c.Numbering.Depth)
+	}
+}
