@@ -1,0 +1,20 @@
+title: Full
+subtitle: Sub
+author: Me
+date: 2026-01-01
+documents:
+  - a.md
+  - ./b.md
+template: custom
+output: out/x.pdf
+page:
+  size: a4
+  margins: 20mm
+  numbers: false
+numbering:
+  enabled: false
+  depth: 6
+features:
+  demo:
+    enabled: false
+    mode: fancy
