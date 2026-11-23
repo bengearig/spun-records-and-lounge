@@ -9,15 +9,19 @@ import (
 
 	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/text"
 )
 
 // Doc is one rendered bundle document.
 type Doc struct {
 	// Path is the document path as listed in spun.yaml.
-	Path   string
-	HTML   string
-	Source []byte
+	Path     string
+	HTML     string
+	Source   []byte
+	Headings []Heading
 }
 
 func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
@@ -27,9 +31,13 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 			exts = append(exts, e)
 		}
 	}
-	md := goldmark.New(goldmark.WithExtensions(exts...))
+	md := goldmark.New(
+		goldmark.WithExtensions(exts...),
+		goldmark.WithParserOptions(parser.WithHeadingAttribute()),
+	)
 
-	docs := make([]Doc, 0, len(b.DocumentPaths))
+	srcs := make([][]byte, len(b.DocumentPaths))
+	roots := make([]ast.Node, len(b.DocumentPaths))
 	for i, path := range b.DocumentPaths {
 		name := b.Config.Documents[i]
 		src, err := os.ReadFile(path)
@@ -39,11 +47,22 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 		if hasFrontMatter(src) {
 			return nil, fmt.Errorf("%s: YAML front matter is not supported; remove the leading --- block", name)
 		}
+		srcs[i] = src
+		roots[i] = md.Parser().Parse(text.NewReader(src))
+	}
+
+	headings, err := assignAnchors(b.Config, b.Config.Documents, srcs, roots)
+	if err != nil {
+		return nil, err
+	}
+	docs := make([]Doc, 0, len(roots))
+	for i, root := range roots {
+		name := b.Config.Documents[i]
 		var buf bytes.Buffer
-		if err := md.Convert(src, &buf); err != nil {
+		if err := md.Renderer().Render(&buf, srcs[i], root); err != nil {
 			return nil, fmt.Errorf("%s: %w", name, err)
 		}
-		docs = append(docs, Doc{Path: name, HTML: buf.String(), Source: src})
+		docs = append(docs, Doc{Path: name, HTML: buf.String(), Source: srcs[i], Headings: headings[i]})
 	}
 	return docs, nil
 }
