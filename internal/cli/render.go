@@ -6,9 +6,10 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-)
 
-var errRenderNotImplemented = errors.New("render is not implemented yet")
+	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
+	"github.com/bengearig/spun-records-and-lounge/internal/render"
+)
 
 func newRenderCmd() *cobra.Command {
 	cmd := &cobra.Command{
@@ -19,7 +20,18 @@ func newRenderCmd() *cobra.Command {
 			if err := checkBundleDir(args[0]); err != nil {
 				return err
 			}
-			return errRenderNotImplemented
+			b, err := bundle.Load(args[0])
+			if err != nil {
+				return err
+			}
+			output, _ := cmd.Flags().GetString("output")
+			chromium, _ := cmd.Flags().GetString("chromium")
+			path, err := render.Run(cmd.Context(), b, render.RunOptions{Output: output, Chromium: chromium})
+			if err != nil {
+				return err
+			}
+			fmt.Fprintln(cmd.OutOrStdout(), path)
+			return nil
 		},
 	}
 	cmd.Flags().StringP("output", "o", "", "output PDF path")

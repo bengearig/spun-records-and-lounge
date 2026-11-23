@@ -1,0 +1,6 @@
+title: Minimal Bundle Title
+subtitle: A small fixture
+author: Test Author
+documents:
+  - intro.md
+  - details.md
