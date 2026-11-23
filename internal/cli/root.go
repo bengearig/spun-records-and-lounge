@@ -6,11 +6,13 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+
+	"github.com/bengearig/spun-records-and-lounge/internal/feature"
 )
 
 var version = "dev"
 
-func newRootCmd() *cobra.Command {
+func newRootCmd(reg *feature.Registry) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:           "spun",
 		Short:         "Build the spun records and lounge business plan bundle",
@@ -22,11 +24,16 @@ func newRootCmd() *cobra.Command {
 	}
 	cmd.SetVersionTemplate("spun {{.Version}}\n")
 	cmd.AddCommand(newDocsCmd())
+	for _, f := range reg.All() {
+		if p, ok := f.(feature.CommandProvider); ok {
+			cmd.AddCommand(p.Commands()...)
+		}
+	}
 	return cmd
 }
 
 func run(args []string, stdout, stderr io.Writer) int {
-	cmd := newRootCmd()
+	cmd := newRootCmd(feature.Default)
 	cmd.SetArgs(args)
 	cmd.SetOut(stdout)
 	cmd.SetErr(stderr)
