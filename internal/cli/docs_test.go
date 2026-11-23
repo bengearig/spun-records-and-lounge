@@ -55,7 +55,7 @@ func TestRenderArgs(t *testing.T) {
 		{"two args", []string{"docs", "render", dir, dir}, "accepts 1 arg(s), received 2"},
 		{"missing dir", []string{"docs", "render", filepath.Join(dir, "nope")}, "does not exist"},
 		{"file path", []string{"docs", "render", file}, "is a file, not a directory"},
-		{"valid dir", []string{"docs", "render", dir}, "render is not implemented yet"},
+		{"no spun.yaml", []string{"docs", "render", dir}, "spun.yaml: not found"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

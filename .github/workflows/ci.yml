@@ -13,6 +13,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
       - run: go build ./...
       - run: go vet ./...
       - run: go test ./...
+        env:
+          SPUN_CHROMIUM: ${{ steps.chrome.outputs.chrome-path }}
+          SPUN_CHROMIUM_NO_SANDBOX: "1"
