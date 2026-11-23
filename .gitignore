@@ -4,3 +4,6 @@
 /.ralph/loop.lock
 
 /.idea/
+
+# built binary
+/spun
