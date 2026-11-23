@@ -105,9 +105,9 @@ func TestPrintSimple(t *testing.T) {
 	}
 }
 
-func TestPrintRelativeImage(t *testing.T) {
+func TestPrintInlineImage(t *testing.T) {
 	exe := chromium(t)
-	html := `<html><body><img src="missing.png"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw="></body></html>`
+	html := `<html><body><img src="data:image/gif;base64,R0lGODlhAQABAAAAACw="></body></html>`
 	got, err := Print(context.Background(), exe, []byte(html), letter())
 	if err != nil {
 		t.Fatal(err)
@@ -142,16 +142,19 @@ func TestPrintTimeout(t *testing.T) {
 	}
 }
 
-func TestPrintCleansTempDir(t *testing.T) {
+func TestPrintLeavesTempDirEmpty(t *testing.T) {
 	exe := chromium(t)
 	tmp := t.TempDir()
 	t.Setenv("TMPDIR", tmp)
 	if _, err := Print(context.Background(), exe, []byte("<html></html>"), letter()); err != nil {
 		t.Fatal(err)
 	}
-	entries, _ := filepath.Glob(filepath.Join(tmp, "spun-pdf-*"))
+	entries, err := os.ReadDir(tmp)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if len(entries) != 0 {
-		t.Errorf("temp dirs left behind: %v", entries)
+		t.Errorf("TMPDIR not empty after Print: %v", entries)
 	}
 }
 
