@@ -4,10 +4,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
+	"github.com/chromedp/cdproto/cdp"
 	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/chromedp"
 )
@@ -47,17 +48,6 @@ func Print(ctx context.Context, exe string, html []byte, opts Options) ([]byte, 
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 
-	dir, err := os.MkdirTemp("", "spun-pdf-")
-	if err != nil {
-		return nil, err
-	}
-	defer os.RemoveAll(dir)
-
-	file := filepath.Join(dir, "index.html")
-	if err := os.WriteFile(file, html, 0o600); err != nil {
-		return nil, err
-	}
-
 	allocOpts := append([]chromedp.ExecAllocatorOption{}, chromedp.DefaultExecAllocatorOptions[:]...)
 	allocOpts = append(allocOpts, chromedp.ExecPath(exe))
 	if os.Getenv(envNoSandbox) == "1" {
@@ -68,7 +58,10 @@ func Print(ctx context.Context, exe string, html []byte, opts Options) ([]byte, 
 	taskCtx, cancelTask := chromedp.NewContext(allocCtx)
 	defer cancelTask()
 
-	steps := []chromedp.Action[chromedp.Void]{chromedp.Navigate("file://" + filepath.ToSlash(file))}
+	steps := []chromedp.Action[chromedp.Void]{
+		chromedp.Navigate("about:blank"),
+		setContent(string(html)),
+	}
 	if opts.WaitForFlag != "" {
 		expr := fmt.Sprintf("window[%q] === true", opts.WaitForFlag)
 		steps = append(steps, chromedp.Poll[chromedp.Void](expr, chromedp.WithPollingInterval(50*time.Millisecond)))
@@ -109,6 +102,42 @@ func Print(ctx context.Context, exe string, html []byte, opts Options) ([]byte, 
 		return nil, fmt.Errorf("print pdf: %w", err)
 	}
 	return buf, nil
+}
+
+// setContent replaces the main frame's document with html and waits for its
+// load lifecycle event, so no file needs to be visible to the browser.
+func setContent(html string) chromedp.Action[chromedp.Void] {
+	return func(ctx context.Context, t *chromedp.Target) (chromedp.Void, error) {
+		var zero chromedp.Void
+		if _, err := cdp.Call(ctx, t, page.SetLifecycleEventsEnabled, page.SetLifecycleEventsEnabledParams{Enabled: true}); err != nil {
+			return zero, err
+		}
+		tree, err := cdp.Call(ctx, t, page.GetFrameTree, cdp.Empty{})
+		if err != nil {
+			return zero, err
+		}
+		frameID := tree.FrameTree.Frame.ID
+
+		loaded := make(chan struct{})
+		var once sync.Once
+		err = chromedp.Listen(ctx, func(ev any) {
+			if e, ok := ev.(*page.EventLifecycleEvent); ok && e.FrameID == frameID && e.Name == "load" {
+				once.Do(func() { close(loaded) })
+			}
+		})
+		if err != nil {
+			return zero, err
+		}
+		if _, err := cdp.Call(ctx, t, page.SetDocumentContent, page.SetDocumentContentParams{FrameID: frameID, HTML: html}); err != nil {
+			return zero, err
+		}
+		select {
+		case <-loaded:
+			return zero, nil
+		case <-ctx.Done():
+			return zero, ctx.Err()
+		}
+	}
 }
 
 func ptr[T any](v T) *T { return &v }
