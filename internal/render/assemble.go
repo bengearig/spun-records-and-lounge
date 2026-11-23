@@ -2,6 +2,7 @@ package render
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"html"
 	"os"
@@ -9,43 +10,73 @@ import (
 
 	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/text"
 )
 
 // Doc is one rendered bundle document.
 type Doc struct {
 	// Path is the document path as listed in spun.yaml.
-	Path   string
-	HTML   string
-	Source []byte
+	Path     string
+	HTML     string
+	Source   []byte
+	Headings []Heading
 }
 
 func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
-	exts := []goldmark.Extender{extension.GFM, extension.Footnote}
+	docs, _, err := assembleWithPages(b, extensions, nil)
+	return docs, err
+}
+
+// assembleWithPages also returns the heading ids whose page numbers cross-references
+// need; pages holds known numbers, or is nil on the first pass.
+func assembleWithPages(b *bundle.Bundle, extensions []goldmark.Extender, pages map[string]int) ([]Doc, []string, error) {
+	exts := []goldmark.Extender{extension.GFM, extension.Footnote, imageExtender{}}
 	for _, e := range extensions {
 		if e != nil {
 			exts = append(exts, e)
 		}
 	}
-	md := goldmark.New(goldmark.WithExtensions(exts...))
+	md := goldmark.New(
+		goldmark.WithExtensions(exts...),
+		goldmark.WithParserOptions(parser.WithHeadingAttribute()),
+	)
 
-	docs := make([]Doc, 0, len(b.DocumentPaths))
+	srcs := make([][]byte, len(b.DocumentPaths))
+	roots := make([]ast.Node, len(b.DocumentPaths))
 	for i, path := range b.DocumentPaths {
 		name := b.Config.Documents[i]
 		src, err := os.ReadFile(path)
 		if err != nil {
-			return nil, fmt.Errorf("%s: %w", name, err)
+			return nil, nil, fmt.Errorf("%s: %w", name, err)
 		}
 		if hasFrontMatter(src) {
-			return nil, fmt.Errorf("%s: YAML front matter is not supported; remove the leading --- block", name)
+			return nil, nil, fmt.Errorf("%s: YAML front matter is not supported; remove the leading --- block", name)
 		}
-		var buf bytes.Buffer
-		if err := md.Convert(src, &buf); err != nil {
-			return nil, fmt.Errorf("%s: %w", name, err)
-		}
-		docs = append(docs, Doc{Path: name, HTML: buf.String(), Source: src})
+		srcs[i] = src
+		roots[i] = md.Parser().Parse(text.NewReader(src))
 	}
-	return docs, nil
+
+	headings, err := assignAnchors(b.Config, b.Config.Documents, srcs, roots)
+	if err != nil {
+		return nil, nil, err
+	}
+	xrefIDs, linkErr := resolveLinks(b, srcs, roots, headings, pages)
+	if err := errors.Join(linkErr, embedImages(b, srcs, roots)); err != nil {
+		return nil, nil, err
+	}
+	docs := make([]Doc, 0, len(roots))
+	for i, root := range roots {
+		name := b.Config.Documents[i]
+		var buf bytes.Buffer
+		if err := md.Renderer().Render(&buf, srcs[i], root); err != nil {
+			return nil, nil, fmt.Errorf("%s: %w", name, err)
+		}
+		docs = append(docs, Doc{Path: name, HTML: buf.String(), Source: srcs[i], Headings: headings[i]})
+	}
+	return docs, xrefIDs, nil
 }
 
 func hasFrontMatter(src []byte) bool {

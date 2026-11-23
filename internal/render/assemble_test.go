@@ -43,7 +43,7 @@ func TestAssembleOrder(t *testing.T) {
 	if len(docs) != 2 || docs[0].Path != "b.md" || docs[1].Path != "a.md" {
 		t.Fatalf("docs = %+v", docs)
 	}
-	if !strings.Contains(docs[0].HTML, "<h1>Bee</h1>") || strings.Contains(docs[0].HTML, "id=") {
+	if !strings.Contains(docs[0].HTML, `<h1 id="b--bee"><span class="heading-number">1</span> Bee</h1>`) {
 		t.Errorf("html = %q", docs[0].HTML)
 	}
 	if string(docs[1].Source) != "# Ay\n" {
