@@ -175,9 +175,9 @@ func matchHeading(hs []Heading, doc, frag string) (string, string) {
 	return "", fmt.Sprintf("heading %q is ambiguous in %s (%s); use a full or custom id", frag, doc, strings.Join(lines, ", "))
 }
 
-// linkLine reports the 1-based source line of a link, falling back to the
+// linkLine reports the 1-based source line of a link or image, falling back to the
 // enclosing block when the link has no text of its own.
-func linkLine(link *ast.Link, src []byte) int {
+func linkLine(link ast.Node, src []byte) int {
 	offset := -1
 	_ = ast.Walk(link, func(n ast.Node, entering bool) (ast.WalkStatus, error) {
 		if t, ok := n.(*ast.Text); ok && entering {

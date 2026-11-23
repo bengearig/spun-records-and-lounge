@@ -2,6 +2,7 @@ package render
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"html"
 	"os"
@@ -32,7 +33,7 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 // assembleWithPages also returns the heading ids whose page numbers cross-references
 // need; pages holds known numbers, or is nil on the first pass.
 func assembleWithPages(b *bundle.Bundle, extensions []goldmark.Extender, pages map[string]int) ([]Doc, []string, error) {
-	exts := []goldmark.Extender{extension.GFM, extension.Footnote}
+	exts := []goldmark.Extender{extension.GFM, extension.Footnote, imageExtender{}}
 	for _, e := range extensions {
 		if e != nil {
 			exts = append(exts, e)
@@ -62,8 +63,8 @@ func assembleWithPages(b *bundle.Bundle, extensions []goldmark.Extender, pages m
 	if err != nil {
 		return nil, nil, err
 	}
-	xrefIDs, err := resolveLinks(b, srcs, roots, headings, pages)
-	if err != nil {
+	xrefIDs, linkErr := resolveLinks(b, srcs, roots, headings, pages)
+	if err := errors.Join(linkErr, embedImages(b, srcs, roots)); err != nil {
 		return nil, nil, err
 	}
 	docs := make([]Doc, 0, len(roots))
