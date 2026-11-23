@@ -24,7 +24,11 @@ type Options struct {
 	PaperWidth, PaperHeight float64
 	Margins                 Margins
 	FooterTemplate          string
-	WaitForFlag             string
+	// WaitForFlag names a window property to wait for before printing.
+	WaitForFlag string
+	// ErrorFlag names a window property holding a page-reported failure,
+	// checked after WaitForFlag is set.
+	ErrorFlag string
 }
 
 // PaperSize returns the width and height in inches for a page size name.
@@ -71,6 +75,17 @@ func Print(ctx context.Context, exe string, html []byte, opts Options) ([]byte, 
 	}
 	if err := chromedp.Do(taskCtx, steps...); err != nil {
 		return nil, fmt.Errorf("load html: %w", err)
+	}
+
+	if opts.ErrorFlag != "" {
+		expr := fmt.Sprintf("String(window[%q] || '')", opts.ErrorFlag)
+		msg, err := chromedp.Run(taskCtx, chromedp.Evaluate[string](expr))
+		if err != nil {
+			return nil, fmt.Errorf("read page error: %w", err)
+		}
+		if msg != "" {
+			return nil, fmt.Errorf("page error: %s", msg)
+		}
 	}
 
 	params := page.PrintToPDFParams{
