@@ -1,0 +1,6 @@
+# ralph local files (database, loop logs, loop lock)
+/.ralph/ralph.db*
+/.ralph/runs/
+/.ralph/loop.lock
+
+/.idea/
