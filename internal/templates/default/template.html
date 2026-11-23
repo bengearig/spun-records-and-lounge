@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{.Title}}</title>
+{{- if .Author}}
+<meta name="author" content="{{.Author}}">
+{{- end}}
+<style>
+@page { size: {{.Page.Size}}; margin: {{.Page.Margins}}; }
+{{.Style}}
+</style>
+{{.HeadHTML}}
+{{- if .Script}}
+<script>{{.Script}}</script>
+{{- end}}
+</head>
+<body>
+<section class="cover">
+  <h1 class="cover-title">{{.Title}}</h1>
+  {{- if .Subtitle}}
+  <p class="cover-subtitle">{{.Subtitle}}</p>
+  {{- end}}
+  {{- if .Author}}
+  <p class="cover-author">{{.Author}}</p>
+  {{- end}}
+  {{- if .Date}}
+  <p class="cover-date">{{.Date}}</p>
+  {{- end}}
+</section>
+<main class="content">
+{{.Body}}
+</main>
+</body>
+</html>
