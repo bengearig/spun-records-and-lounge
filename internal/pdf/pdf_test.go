@@ -149,13 +149,85 @@ func TestPrintLeavesTempDirEmpty(t *testing.T) {
 	if _, err := Print(context.Background(), exe, []byte("<html></html>"), letter()); err != nil {
 		t.Fatal(err)
 	}
-	entries, err := os.ReadDir(tmp)
+	got, err := strayTempEntries(tmp)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(entries) != 0 {
-		t.Errorf("TMPDIR not empty after Print: %v", entries)
+	if len(got) != 0 {
+		t.Errorf("Print left entries in TMPDIR: %v", got)
 	}
+}
+
+// strayTempEntries lists paths under dir other than Chromium's own org.chromium.* scratch entries.
+func strayTempEntries(dir string) ([]string, error) {
+	var stray []string
+	err := filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if path == dir {
+			return nil
+		}
+		if strings.HasPrefix(d.Name(), "org.chromium.") {
+			if d.IsDir() {
+				return filepath.SkipDir
+			}
+			return nil
+		}
+		rel, err := filepath.Rel(dir, path)
+		if err != nil {
+			return err
+		}
+		stray = append(stray, rel)
+		return nil
+	})
+	return stray, err
+}
+
+func TestStrayTempEntries(t *testing.T) {
+	t.Run("ignores chromium scratch", func(t *testing.T) {
+		dir := t.TempDir()
+		fake := filepath.Join(dir, "org.chromium.Fake")
+		if err := os.MkdirAll(filepath.Join(fake, "sub"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(fake, "sub", "page.html"), nil, 0o644); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Mkdir(filepath.Join(dir, "org.chromium.Chromium.chromium_chrome_url_fetcher_.sAwtD6"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		got, err := strayTempEntries(dir)
+		if err != nil || len(got) != 0 {
+			t.Errorf("got %v, %v; want none", got, err)
+		}
+	})
+
+	t.Run("reports spun directory and html", func(t *testing.T) {
+		dir := t.TempDir()
+		if err := os.Mkdir(filepath.Join(dir, "spun-pdf-123"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(dir, "spun-pdf-123", "index.html"), nil, 0o644); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(dir, "loose.html"), nil, 0o644); err != nil {
+			t.Fatal(err)
+		}
+		got, err := strayTempEntries(dir)
+		if err != nil {
+			t.Fatal(err)
+		}
+		want := map[string]bool{"spun-pdf-123": true, filepath.Join("spun-pdf-123", "index.html"): true, "loose.html": true}
+		if len(got) != len(want) {
+			t.Fatalf("got %v; want %v", got, want)
+		}
+		for _, g := range got {
+			if !want[g] {
+				t.Errorf("unexpected entry %q", g)
+			}
+		}
+	})
 }
 
 func TestAnchorPages(t *testing.T) {
