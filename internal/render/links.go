@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"html"
 	"net/url"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
@@ -19,8 +21,19 @@ var schemeRE = regexp.MustCompile(`^(?:[a-zA-Z][a-zA-Z0-9+.-]*:|//)`)
 
 // resolveLinks rewrites relative document and fragment links to internal
 // "#<id>" links, using the heading table built by assignAnchors. All problems
-// are collected and returned together.
-func resolveLinks(b *bundle.Bundle, srcs [][]byte, roots []ast.Node, headings [][]Heading) error {
+// are collected and returned together. Links with empty text or the title
+// "xref" get generated cross-reference text; pages supplies their page
+// numbers (nil on the first pass, which prints "?"), and the ids of every
+// xref target that needs a page number are returned.
+func resolveLinks(b *bundle.Bundle, srcs [][]byte, roots []ast.Node, headings [][]Heading, pages map[string]int) ([]string, error) {
+	byID := map[string]Heading{}
+	for _, hs := range headings {
+		for _, h := range hs {
+			byID[h.ID] = h
+		}
+	}
+	var xrefIDs []string
+	seen := map[string]bool{}
 	names := b.Config.Documents
 	index := make(map[string]int, len(names))
 	for i, name := range names {
@@ -44,13 +57,47 @@ func resolveLinks(b *bundle.Bundle, srcs [][]byte, roots []ast.Node, headings []
 				return ast.WalkContinue, nil
 			}
 			link.Destination = []byte("#" + id)
+			if link.FirstChild() == nil || string(link.Title) == "xref" {
+				link.Title = nil
+				setXrefText(link, b.Config, byID[id], pages)
+				if b.Config.Page.Numbers && !seen[id] {
+					seen[id] = true
+					xrefIDs = append(xrefIDs, id)
+				}
+			}
 			return ast.WalkContinue, nil
 		})
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
-	return errors.Join(errs...)
+	return xrefIDs, errors.Join(errs...)
+}
+
+// setXrefText replaces the link's children with "Section N, p. P", leaving
+// out whichever parts are disabled and falling back to the heading text.
+func setXrefText(link *ast.Link, cfg bundle.Config, h Heading, pages map[string]int) {
+	var parts []string
+	if h.Number != "" {
+		parts = append(parts, "Section "+h.Number)
+	}
+	if cfg.Page.Numbers {
+		page := "?"
+		if p, ok := pages[h.ID]; ok {
+			page = strconv.Itoa(p)
+		}
+		parts = append(parts, "p. "+page)
+	}
+	text := h.Text
+	if len(parts) > 0 {
+		text = strings.Join(parts, ", ")
+	}
+	for c := link.FirstChild(); c != nil; c = link.FirstChild() {
+		link.RemoveChild(link, c)
+	}
+	s := ast.NewString([]byte(html.EscapeString(text)))
+	s.SetCode(true)
+	link.AppendChild(link, s)
 }
 
 // resolveLink returns the full heading id for dest, or a failure reason.

@@ -31,7 +31,7 @@ func TestLinksResolved(t *testing.T) {
 		{"self link with fragment", a, `<a href="#a--details">self</a>`},
 		{"full id", a, `<a href="#b--deep">full</a>`},
 		{"custom id", a, `<a href="#top-id">c</a>`},
-		{"empty link text", a, `<a href="#b--deep"></a>`},
+		{"empty link text becomes an xref", a, `<a href="#b--deep">Section 2.1, p. ?</a>`},
 		{"external http", a, `<a href="https://example.com/x.md#y">h</a>`},
 		{"mailto", a, `<a href="mailto:a@example.com">m</a>`},
 		{"parent directory", b, `<a href="#a--details">a</a>`},

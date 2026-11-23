@@ -3,6 +3,7 @@ package render
 import (
 	"context"
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -63,19 +64,11 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 
 	pdfOpts.WaitForFlag, pdfOpts.ErrorFlag = waitFlag, errorFlag
 
-	docs, err := Assemble(b, extensions)
-	if err != nil {
-		return "", err
-	}
-	html, err := templates.Render(b, Body(docs), head)
-	if err != nil {
-		return "", err
-	}
 	exe, err := pdf.Find(opts.Chromium)
 	if err != nil {
 		return "", err
 	}
-	data, err := pdf.Print(ctx, exe, html, pdfOpts)
+	data, err := renderPDF(ctx, b, extensions, head, exe, pdfOpts)
 	if err != nil {
 		return "", err
 	}
@@ -83,6 +76,41 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 		return "", err
 	}
 	return out, nil
+}
+
+// printPDF is replaced in tests to count prints.
+var printPDF = pdf.PrintAnchors
+
+// maxPrints bounds the passes needed for cross-reference page numbers to
+// settle: one with placeholders, then up to two with real numbers.
+const maxPrints = 3
+
+func renderPDF(ctx context.Context, b *bundle.Bundle, extensions []goldmark.Extender, head templates.HeadInjections, exe string, pdfOpts pdf.Options) ([]byte, error) {
+	var pages map[string]int
+	for pass := 1; ; pass++ {
+		docs, ids, err := assembleWithPages(b, extensions, pages)
+		if err != nil {
+			return nil, err
+		}
+		html, err := templates.Render(b, Body(docs), head)
+		if err != nil {
+			return nil, err
+		}
+		data, got, err := printPDF(ctx, exe, html, pdfOpts, ids)
+		if err != nil {
+			return nil, err
+		}
+		if len(ids) == 0 {
+			return data, nil
+		}
+		if pass > 1 && maps.Equal(pages, got) {
+			return data, nil
+		}
+		if pass == maxPrints {
+			return nil, fmt.Errorf("cross-reference page numbers did not settle after %d renders", maxPrints)
+		}
+		pages = got
+	}
 }
 
 func joinNonEmpty(a, b string) string {

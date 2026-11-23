@@ -25,6 +25,13 @@ type Doc struct {
 }
 
 func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
+	docs, _, err := assembleWithPages(b, extensions, nil)
+	return docs, err
+}
+
+// assembleWithPages also returns the heading ids whose page numbers cross-references
+// need; pages holds known numbers, or is nil on the first pass.
+func assembleWithPages(b *bundle.Bundle, extensions []goldmark.Extender, pages map[string]int) ([]Doc, []string, error) {
 	exts := []goldmark.Extender{extension.GFM, extension.Footnote}
 	for _, e := range extensions {
 		if e != nil {
@@ -42,10 +49,10 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 		name := b.Config.Documents[i]
 		src, err := os.ReadFile(path)
 		if err != nil {
-			return nil, fmt.Errorf("%s: %w", name, err)
+			return nil, nil, fmt.Errorf("%s: %w", name, err)
 		}
 		if hasFrontMatter(src) {
-			return nil, fmt.Errorf("%s: YAML front matter is not supported; remove the leading --- block", name)
+			return nil, nil, fmt.Errorf("%s: YAML front matter is not supported; remove the leading --- block", name)
 		}
 		srcs[i] = src
 		roots[i] = md.Parser().Parse(text.NewReader(src))
@@ -53,21 +60,22 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 
 	headings, err := assignAnchors(b.Config, b.Config.Documents, srcs, roots)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	if err := resolveLinks(b, srcs, roots, headings); err != nil {
-		return nil, err
+	xrefIDs, err := resolveLinks(b, srcs, roots, headings, pages)
+	if err != nil {
+		return nil, nil, err
 	}
 	docs := make([]Doc, 0, len(roots))
 	for i, root := range roots {
 		name := b.Config.Documents[i]
 		var buf bytes.Buffer
 		if err := md.Renderer().Render(&buf, srcs[i], root); err != nil {
-			return nil, fmt.Errorf("%s: %w", name, err)
+			return nil, nil, fmt.Errorf("%s: %w", name, err)
 		}
 		docs = append(docs, Doc{Path: name, HTML: buf.String(), Source: srcs[i], Headings: headings[i]})
 	}
-	return docs, nil
+	return docs, xrefIDs, nil
 }
 
 func hasFrontMatter(src []byte) bool {

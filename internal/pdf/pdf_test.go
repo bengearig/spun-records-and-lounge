@@ -154,3 +154,20 @@ func TestPrintCleansTempDir(t *testing.T) {
 		t.Errorf("temp dirs left behind: %v", entries)
 	}
 }
+
+func TestAnchorPages(t *testing.T) {
+	exe := chromium(t)
+	html := `<html><body><h1 id="top">Top</h1><a href="#second">go</a> <a href="#caf%C3%A9">c</a>` +
+		`<div style="break-before:page"></div><h2 id="second">Second</h2>` +
+		`<div style="break-before:page"></div><h2 id="café">Third</h2></body></html>`
+	got, err := AnchorPages(context.Background(), exe, []byte(html), letter(), []string{"second", "café"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got["second"] != 2 || got["café"] != 3 || len(got) != 2 {
+		t.Errorf("pages = %v, want second:2 café:3", got)
+	}
+	if _, err := AnchorPages(context.Background(), exe, []byte(html), letter(), []string{"nope"}); err == nil {
+		t.Error("expected error for an anchor that is not linked")
+	}
+}
