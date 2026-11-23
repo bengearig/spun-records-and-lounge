@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/bengearig/spun-records-and-lounge/internal/feature"
+	_ "github.com/bengearig/spun-records-and-lounge/internal/features/math"
 )
 
 type fake string
@@ -166,5 +167,25 @@ func TestLoadEmptyFile(t *testing.T) {
 	_, err := Load(dir)
 	if err == nil || !strings.Contains(err.Error(), "spun.yaml: title") {
 		t.Errorf("err = %v", err)
+	}
+}
+
+func TestFeatureMath(t *testing.T) {
+	b, err := Load(fixture("math-mapping"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if f := b.Config.Features["math"]; !f.Enabled {
+		t.Errorf("math = %+v, want enabled", f)
+	}
+
+	_, err = Load(fixture("math-typo"))
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	for _, w := range []string{"features.matth", "unknown feature", `"matth"`, "math"} {
+		if !strings.Contains(err.Error(), w) {
+			t.Errorf("error %q missing %q", err, w)
+		}
 	}
 }

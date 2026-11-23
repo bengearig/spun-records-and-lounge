@@ -10,6 +10,7 @@ import (
 
 	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
 	"github.com/bengearig/spun-records-and-lounge/internal/feature"
+	mathfeature "github.com/bengearig/spun-records-and-lounge/internal/features/math"
 	"github.com/bengearig/spun-records-and-lounge/internal/pdf"
 	"github.com/bengearig/spun-records-and-lounge/internal/templates"
 	"github.com/yuin/goldmark"
@@ -36,6 +37,7 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 
 	var extensions []goldmark.Extender
 	var head templates.HeadInjections
+	var waitFlag, errorFlag string
 	for _, f := range features {
 		if m, ok := f.(feature.MarkdownExtender); ok {
 			extensions = append(extensions, m.Extenders()...)
@@ -44,6 +46,9 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 			head.HTML = joinNonEmpty(head.HTML, a.HeadHTML())
 			head.Style = joinNonEmpty(head.Style, a.Styles())
 			head.Script = joinNonEmpty(head.Script, a.Scripts())
+			if f.Name() == mathfeature.Name {
+				waitFlag, errorFlag = mathfeature.ReadyFlag, mathfeature.ErrorFlag
+			}
 		}
 	}
 
@@ -55,6 +60,8 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 	if err != nil {
 		return "", err
 	}
+
+	pdfOpts.WaitForFlag, pdfOpts.ErrorFlag = waitFlag, errorFlag
 
 	docs, err := Assemble(b, extensions)
 	if err != nil {

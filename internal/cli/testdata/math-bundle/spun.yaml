@@ -1,0 +1,5 @@
+title: Math Bundle
+documents:
+  - doc.md
+features:
+  math: true
