@@ -55,6 +55,9 @@ func Assemble(b *bundle.Bundle, extensions []goldmark.Extender) ([]Doc, error) {
 	if err != nil {
 		return nil, err
 	}
+	if err := resolveLinks(b, srcs, roots, headings); err != nil {
+		return nil, err
+	}
 	docs := make([]Doc, 0, len(roots))
 	for i, root := range roots {
 		name := b.Config.Documents[i]
