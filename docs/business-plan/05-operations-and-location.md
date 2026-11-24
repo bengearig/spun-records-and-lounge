@@ -8,6 +8,8 @@ TODO: Describe size, zoning, acoustics, foot traffic, and access needs.
 
 TODO: Describe how retail, lounge, bar, and storage space are arranged.
 
+![Lounge layout placeholder](images/lounge-layout-placeholder.svg)
+
 ## Suppliers and Sourcing
 
 TODO: Describe distributors, used-record sourcing, and beverage suppliers.
