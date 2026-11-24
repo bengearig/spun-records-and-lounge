@@ -2,7 +2,7 @@
 
 ## Mission
 
-TODO: Describe why the business exists and who it serves.
+Spun Records and Lounge is a community space where people relax after a day or week of work, in a safe, friendly, and inviting atmosphere. It is a new and used record store with lounge seating and tables, and drinks sold at the checkout counter.
 
 Every decision should reflect [our values](02-concept-and-vision.md#values).
 
@@ -12,8 +12,13 @@ TODO: Describe what the business looks like in several years.
 
 ## Values
 
-TODO: Describe the principles that guide decisions.
+- **Service.** We aim to give the best service possible, delivered efficiently and cost-effectively.
+- **Music.** The space is always filled with music, played only from full records on the turntable or by live performers.
+- **Curated minimalism.** Our selection should feel curated and lean toward minimalism.
+- **Local arts.** Our events and vendors promote the arts, especially locally.
 
 ## Brand
 
-TODO: Describe name meaning, voice, look, and feel.
+Spun brings modern sensibilities to a retro, groovy look, with neon and color throughout. Despite the color, the space should feel calming and relaxing, a place to unwind.
+
+TODO: Describe name meaning and voice. Palette, signage, logo, and furnishing choices are still open.
