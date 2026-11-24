@@ -35,7 +35,28 @@ TODO: Confirm the customer segments and what each wants.
 
 ## Competitors
 
-TODO: Describe nearby record stores, bars, and listening venues and how this business differs.
+> **Research (unverified):** Record stores. Lost and Found Records (3710 N. Broadway, North Knoxville) is an independent shop reported to have operated since 1990 and to buy, sell, and trade vinyl and CDs. It is the only North Knoxville shop found. Others reported in Knoxville are Basement Records (5009 Chapman Hwy), Wild Honey Records (5415-F Kingston Pike, with an Oak Ridge shop and a mention of a new Knoxville location), and Magnolia Records (1515 North Central St, downtown). Hi-Fi & Fly and Grindhouse Video appear in directories, but their vinyl inventory was not confirmed. No record store was found in Fountain City itself. Hours and listings may have changed.
+>
+> Sources: [Record Store directory: Knoxville](https://recordstore.com/stores/tennessee/knoxville), [Record Shops directory: Knoxville](https://www.recordshops.net/tennessee/knoxville/), [Wild Honey Records](https://www.wildhoneyrecords.com/), [Lost and Found Records on Discogs](https://www.discogs.com/record-stores/store/lostandfound_records/)
+>
+> **Verify with:** Each shop directly, and a site visit.
+
+> **Research (unverified):** Bars and music venues. In Fountain City are Fountain City Social (a retro, 80s-themed bar) and The Casual Pint (a beer garden on Harvest Mill Way); neither is confirmed to host live music. Nearby, in downtown and Old City, Preservation Pub and Scruffy City Hall are reported for live music, Boyd's Jig & Reel for weekly Celtic and old-time sessions, and Barley's Taproom, Pretentious Beer Co, and Pilot Light are also named. No listening bar was found in Fountain City. Some listings are dated or inconsistent.
+>
+> Sources: [Livability: craft beer and live music in Knoxville](https://livability.com/tn/knoxville/experiences-adventures/in-knoxville-craft-beer-live-music-go-hand-in-hand/), [Fodor's: bars in Knoxville](https://www.fodors.com/world/north-america/usa/tennessee/places/knoxville/things-to-do/nightlife), [The Scout Guide: Knoxville bar guide](https://thescoutguide.com/knoxville/editorial/the-knoxville-bar-guide/), [TN Vacation: live music in Knoxville restaurants](https://www.tnvacation.com/articles/11-knoxville-restaurants-live-music)
+>
+> **Verify with:** The venues' own calendars, and a site visit.
+
+> **Suggestion (to confirm):** How Spun differs, drawn from the concept documents:
+>
+> - A record store and a lounge in one space.
+> - Music played only from full records or by live performers.
+> - Events that promote local arts.
+> - A curated, minimalist selection.
+>
+> **Confirm with:** The owner.
+
+TODO: Competitors' pricing was not found. Gather prices at competing record stores and bars.
 
 ## Trends
 
