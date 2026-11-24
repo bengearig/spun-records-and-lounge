@@ -62,7 +62,34 @@ Music always plays in the space, either from full records on the turntable or fr
 
 ## Permits
 
-TODO: Describe local business, health, signage, and occupancy permits.
+The owner does not yet know which permits apply. Food is pre-packaged. Coffee and tea are made to order. The business may add an on-site oven for baked snacks. The beer permit is covered under Alcohol Licensing.
+
+### Business licenses
+
+> **Research (unverified):** Inside the city, businesses generally need both a City of Knoxville and a Knox County business license. License type depends on expected gross receipts: a standard license for $100,000 or more, or a minimal activity license for $3,000 to $99,999.99. A source lists a $15 application fee for each. The city office is at room 450 of the City County Building, 400 Main Street. The county license comes from the Knox County Clerk. Many businesses also need a state sales tax number.
+>
+> The city checklist says to review the site with City of Knoxville Plans Review so the proposed activity fits the location. Certificate of occupancy steps were not found. SCORE Knoxville offers free new-business help.
+>
+> Sources: [Business License/Tax Office](https://knoxvilletn.gov/business/business_license_tax_office), [Knoxville business license application](https://www.KnoxvilleTN.gov/UserFiles/Servers/Server_109478/File/Finance/form_biztaxlicapp.pdf), [SCORE Tennessee requirements](https://www.score.org/tn/greater-knoxville/articles/tennessee-requirements-0/)
+>
+> **Verify with:** City of Knoxville Business Tax Office, 865-215-2083; Knox County Clerk, 865-215-2392; City of Knoxville Plans Review, 865-215-2999; SCORE Knoxville, 865-545-4203.
+
+### Health department
+
+> **Research (unverified):** Knox County Health Department (Food Protection) handles food service plan review. No confirmation was found that pour-over coffee, steeped tea, and pre-packaged baked goods qualify for a lower-risk category. Search results for "Knox County" mostly came from Indiana and do not apply.
+>
+> Sources: [Knox County TN Food Protection](https://knoxcounty.org/health/food_protection.php), [Food Protection FAQ](https://knoxcounty.org/health/food_protection_faq.php)
+>
+> **Verify with:** Knox County Health Department, Food Protection.
+
+### Open questions
+
+- What zoning applies in the 37918 area, and whether strip-mall tenants face different rules.
+- What occupancy and assembly limits apply to live music.
+- Noise rules, and whether live entertainment needs a permit.
+- Whether the business needs a signage permit.
+- How sales tax applies to drinks.
+- Whether the on-site oven and mixer are allowed.
 
 ## Insurance
 
