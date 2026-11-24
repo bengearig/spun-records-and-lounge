@@ -41,7 +41,17 @@ At opening the owner performs every role. Roles are added in the order below as 
 
 ## Advisors
 
-TODO: Describe mentors, professionals, and advisors supporting the business.
+No advisors are named yet.
+
+TODO: Owner, please name any mentors or advisors who support the business.
+
+### Open questions
+
+- Does the owner have an accountant?
+- Does the owner have an attorney, including one familiar with alcohol or hemp licensing?
+- Does the owner have an insurance broker?
+- Does the owner have a mentor who runs a record store or a similar business?
+- Could other local shop owners be asked for advice?
 
 ## Hiring Plan
 
