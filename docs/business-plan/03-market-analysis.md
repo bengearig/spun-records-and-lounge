@@ -14,7 +14,24 @@ TODO: Trade-area or drive-time data, daytime and evening population, and foot tr
 
 ## Target Customers
 
-TODO: Describe who the core customer segments are and what they want.
+No customer segments have been confirmed yet.
+
+> **Suggestion (to confirm):** Likely segments, inferred from the concept documents:
+>
+> - People relaxing after a day or week of work, who may want a calm, safe, friendly place.
+> - Record collectors and listeners, who may want new and used records and audio gear.
+> - Fans of local music and art, who may want live music, album listening parties, and live painting.
+> - Local artists, who may want to be vendors and performers.
+> - Shoppers for apparel, patches, enamel pins, and stickers, who may want apparel and small collectible items.
+>
+> **Confirm with:** The owner.
+
+TODO: Confirm the customer segments and what each wants.
+
+### Open questions
+
+- Whether the whole space is 21 and over or only part of it. Alcohol and hemp THC drinks are sold on-premises, and no age policy is decided.
+- Whether any customer survey will be done.
 
 ## Competitors
 
