@@ -6,7 +6,7 @@ TODO: Describe size, zoning, acoustics, foot traffic, and access needs.
 
 ## Layout
 
-TODO: Describe how retail, lounge, checkout counter, and storage space are arranged.
+Spun uses an open floor plan. Merchandise is spread throughout the space, alongside lounge seating and tables. Drinks are sold at the checkout counter.
 
 ![Lounge layout placeholder](images/lounge-layout-placeholder.png)
 
