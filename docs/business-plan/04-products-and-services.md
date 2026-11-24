@@ -19,6 +19,12 @@ Drinks are sold at the checkout counter by counter staff. There is no bar and no
 
 All drinks are consumed on-premises only.
 
+**Hemp-derived THC drinks**
+
+The owner wants to offer canned hemp-derived THC drinks from opening. They would be sold at the checkout counter by counter staff and consumed on-premises only, like every other drink. This depends on federal and Tennessee licensing that is not yet resolved, so it is an intention, not a settled offering. See [](06-licensing-and-legal.md#hemp-drink-licensing) for the research.
+
+TODO: Decide the product details for hemp-derived THC drinks: amounts per serving and per can, brands, suppliers, and pricing. These are undecided.
+
 **Non-alcoholic drinks**
 
 - Coffee is pour over and made when ordered.

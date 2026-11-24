@@ -55,6 +55,51 @@ Wine was dropped after research suggested a wine license may not fit a record st
 - What the seltzer and cider products contain, including whether any distilled spirits are present.
 - Whether cider falls under a beer permit.
 
+## Hemp Drink Licensing
+
+The owner wants to offer hemp-derived THC drinks in cans, consumed on-premises only and sold at the checkout counter, from opening. These drinks are intoxicating. Because the plan is to launch them from opening, licensing is on the critical path. The federal and Tennessee licensing questions below are unresolved, and nothing here has been confirmed with an authority.
+
+### Federal definition of hemp
+
+> **Research (unverified):** The FY2026 agriculture appropriations act (Public Law 119-37, Section 781) rewrote the federal definition of hemp. It moves from a delta-9-only test to a total-THC test: plant material with up to 0.3% total THC by dry weight stays in, and finished products with more than 0.4 milligrams of total THC per container are excluded from the definition of hemp.
+>
+> Sources say the change takes effect November 12, 2026. A later law (the Continuing Appropriations and Extensions Act, 2027, P.L. 119-103) is reported to have delayed at least part of it to December 11, 2026. The sources disagree about which parts moved: one says products with non-naturally occurring cannabinoids kept the November 12 date, while beverage-focused sources treat the 0.4 mg cap as taking effect December 11. Unless Congress acts, hemp THC drinks above 0.4 mg per container would lose federal hemp status in every state. Bills to delay to 2028, repeal, replace with a federal framework, or carve out beverages were reported still in committee as of November 17, 2026.
+>
+> Sources: [Congress.gov CRS: Change to Federal Definition of Hemp](https://www.congress.gov/crs-product/IN12620), [CRS: Changes to the Statutory Definition of Hemp](https://www.congress.gov/crs-product/IF13136), [Vicente LLP](https://vicentellp.com/insights/federal-hemp-definition-change-synthetic-and-artificial-are-now-prohibited/), [Hemp Law Group: Federal Hemp Ban 2026](https://www.hemplawgroup.com/news/federal-hemp-ban-2026-where-things-stand), [December 11 Hemp THC Ban (hempbeverages.com)](https://hempbeverages.com/pages/hemp-law-2026).
+>
+> **Verify with:** the enacted text of P.L. 119-37 and P.L. 119-103, and a hemp or cannabis attorney.
+
+### Tennessee regulator and licenses
+
+> **Research (unverified):** Public Chapter 526 of 2025 moved hemp-derived cannabinoid products (HDCPs) to TABC on January 1, 2026. Anyone making, distributing, or selling them needs a TABC license: supplier, wholesaler, or retailer. Reported annual fees are $2,500 for a supplier, $5,000 for a wholesaler, and $1,000 for a retailer, plus a $500 application fee. Selling without a license is reported to be a Class A misdemeanor, and TABC reported finding more than 650 unlicensed retailers.
+>
+> Reported retail sales rules: face-to-face sales at the licensed location, no delivery or shipping to consumers, and age checks (sources disagree on whether there is an over-50 exception). Reported limits for THC drinks: 15 mg of hemp-derived cannabinoids per serving and 2 servings per can; sources disagree on container-size exceptions.
+>
+> Sources: [TABC HDCP Retail Applicant Guide](https://www.tn.gov/content/dam/tn/abc-documents/abc-documents/HDCP-Retail-Applicant-Guide.pdf), [TABC FAQ](https://www.tn.gov/abc/public-information-and-forms/frequently-asked-questions.html), [Dickinson Wright](https://www.dickinson-wright.com/news-alerts/hemp-derived-cannabinoids-under-abc-authority), [Adams and Reese: Tennessee HDC law](https://www.adamsandreese.com/last-call/what-to-know-about-licensing-and-selling-under-tennessees-new-hemp-derived-cannabinoid-law), [TABC: 650 unlicensed retailers](https://www.tn.gov/abc/public-information-and-forms/newsroom/2026/3/13/tabc-investigates-650-unlicensed-hemp-retailers-across-tennessee-.html).
+>
+> **Verify with:** TABC licensing office and the TABC HDCP pages.
+
+### Eligibility
+
+The plan's alcohol licensing is built on a local beer permit (see [](06-licensing-and-legal.md#alcohol-licensing)). The research below suggests that may not be enough for hemp drinks.
+
+> **Research (unverified):** Reported rule: HDCP retail sales are limited to businesses with a TABC retail package store license plus a hemp retail license, or a TABC on-premises consumption (liquor-by-the-drink) license plus a hemp retail license. On-premises licensees may sell HDCPs only for on-site consumption, to people 21 and older.
+>
+> The plan's current alcohol approach is a local beer permit, not a TABC on-premises license, and earlier research found that on-premises licenses are built around restaurant categories with no record-store category found. If the reported rule is right, the business might not be eligible for a hemp retail license without an on-premises TABC license. Not confirmed: whether a beer permit alone qualifies, and whether any TABC license fits a record store with on-premises sales. Research found no Knoxville or Knox County rule specific to hemp drinks, no local zoning or distance rules, no information on whether the beer permit application is affected, and nothing on sales tax for these products.
+>
+> Sources: no separate sources were listed for this finding; see the sources in the Tennessee block above.
+>
+> **Verify with:** TABC licensing office.
+
+### Open questions
+
+- Whether a business with a local beer permit and no TABC on-premises license is eligible for a hemp retail license.
+- When the federal definition change takes effect, which parts moved, and whether Congress acts before opening.
+- The per-serving and per-can THC amounts, and which suppliers offer products that fit both federal and Tennessee limits.
+- Whether to launch hemp drinks from opening if licensing does not fit.
+- How age checks and staff training will work for hemp drinks.
+- Whether Knoxville or Knox County has local rules for hemp drinks.
+
 ## Music Licensing
 
 Music always plays in the space, either from full records on the turntable or from live performers. Live performers should prefer original music, and cover bands do not fit the vibe. The owner does not yet know how music licensing applies to the business.
