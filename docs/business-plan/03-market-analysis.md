@@ -60,4 +60,16 @@ TODO: Competitors' pricing was not found. Gather prices at competing record stor
 
 ## Trends
 
-TODO: Describe vinyl resurgence, hospitality, and listening-culture trends that apply.
+> **Research (unverified):** Vinyl. RIAA's 2025 year-end report lists U.S. vinyl revenue at $1,042.9 million, up from $954.4 million in 2024 (about 9.3%), reportedly the first time above $1 billion since 1983. Units are reported up about 7.9% to 46.8 million, and RIAA counts 2025 as the 19th straight year of U.S. vinyl growth. CDs fell. RIAA now reports on a wholesale basis, so these figures are not directly comparable with earlier retail-based reports. A single release (a Taylor Swift album) was reported at about 1.6 million vinyl units.
+>
+> Sources: [RIAA: 2025 revenue report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/), [RIAA Year-End Revenue 2025 (PDF)](https://www.riaa.com/wp-content/uploads/2026/03/RIAA-Year-End-Revenue-2025.pdf), [Music Week](https://www.musicweek.com/labels/read/riaa-us-revenue-hits-record-high-as-vinyl-sales-pass-1-billion/093770)
+>
+> **Verify with:** The RIAA report.
+
+> **Research (unverified):** Listening bars and hospitality. Listening and hi-fi bars, rooted in Japanese jazz kissa, spread in the U.S. after the first U.S. hi-fi bar opened in Los Angeles in 2018. Press attributes growth partly to post-pandemic demand for gathering places ("third spaces"). The trend is not uniformly durable: a Philadelphia listening room announced a temporary closure in November 2023, and a cafe ended record bar nights. No reliable count of U.S. listening bars or revenue figures was found; most claims come from press and operators.
+>
+> Sources: [VinePair: American hi-fi bars](https://vinepair.com/articles/american-hi-fi-bars/), [Smithsonian: Gen Z and listening bars](https://www.smithsonianmag.com/travel/why-gen-z-is-trading-night-clubs-for-japanese-style-listening-bars-180988044/), [Restaurant Business: spin those albums](https://restaurantbusinessonline.com/50-great-ideas-2024-2024/spin-those-albums), [Philadelphia Inquirer: listening rooms](https://www.inquirer.com/arts/listening-room-record-bars-philadelphia-20240410.html)
+>
+> **Verify with:** Operators and trade data.
+
+TODO: Other trends were not found. Gather local trends in non-alcoholic and hemp drinks.
