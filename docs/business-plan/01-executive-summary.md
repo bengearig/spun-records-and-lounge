@@ -39,5 +39,6 @@ The sales level at which the business covers its costs is derived in [](09-finan
 - A curated, minimalist selection.
 - A calming community space with a retro, groovy look.
 - Hemp-derived THC drinks are intended but depend on unresolved federal and state licensing; see [](06-licensing-and-legal.md#hemp-drink-licensing).
+- Owner-operated at opening, with staff hired as the business can support them; see [](08-organization.md#roles).
 
 TODO: No timeline has been given. Add the key milestones here.

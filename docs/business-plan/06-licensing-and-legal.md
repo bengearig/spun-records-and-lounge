@@ -167,6 +167,27 @@ Nothing about insurance is decided or researched yet. What coverage the business
 - Whether on-premises alcohol sales and live music change the coverage the business needs.
 - What the coverage will cost.
 
+## Employer Obligations
+
+The owner plans to hire staff when the business can afford it. Hiring may bring employer obligations, and it is not yet known which ones apply.
+
+> **Research (unverified):** Search results say Tennessee employers outside construction and coal mining must carry workers' compensation insurance once they have five or more full-time or part-time employees. Part-time employees and family members count toward the five. Below that, an employer is exempt and may buy coverage voluntarily. A sole owner who is the only employee is generally excluded.
+>
+> Search results also say an employing unit registers with the Tennessee Department of Labor and Workforce Development to determine unemployment insurance liability, and that new hires must be reported within twenty days of hire. Payroll-vendor sources commonly report a new-employer unemployment rate of 2.7% on a $7,000 wage base, with rates varying by industry. These vendor figures are not official.
+>
+> Sources: [Tennessee Department of Labor: Who must carry insurance (non-construction)](https://www.tn.gov/workforce/injuries-at-work/employers/employers/who-must-carry-insurance/non-construction.html), [Tennessee Department of Labor: Who must carry insurance](https://tennessee.gov/workforce/injuries-at-work/employers/employers/who-must-carry-insurance.html), [Tennessee Department of Labor: New hire reporting](https://www.tn.gov/workforce/employers/staffing-redirect/hiring-regulations/new-hire-reporting.html), [Tennessee Department of Labor: Unemployment insurance tax](https://www.tn.gov/workforce/employers/tax-and-insurance-redirect/unemployment-insurance-tax), [Tennessee Department of Labor: Employer FAQ](https://lwdsupport.tn.gov/hc/en-us/articles/41544930827027-Employers-Frequently-Asked-Questions)
+>
+> **Verify with:** Tennessee Department of Labor and Workforce Development, its Bureau of Workers' Compensation, and an accountant or payroll provider.
+
+Federal employer obligations, overtime, and hiring costs have not been researched.
+
+### Open questions
+
+- Who will run payroll.
+- When a first hire triggers registration and reporting.
+- When workers' compensation coverage will be bought.
+- How many employees would be counted toward the threshold once the manager and events coordinator are hired.
+
 ## Leases
 
 The business will lease its space rather than buy. No site is chosen and no lease terms are known.
