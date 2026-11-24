@@ -55,4 +55,25 @@ TODO: Owner, please name any mentors or advisors who support the business.
 
 ## Hiring Plan
 
-TODO: Describe when and how staff will be recruited and trained.
+The owner will hire an employee once the business can support one, in the order set out in [](08-organization.md#roles). The owner is unsure how hiring and training will work.
+
+> **Research (unverified):** Wages. PayScale's modeled estimate for a retail sales associate in Knoxville is about $12.38 an hour, with a typical range of roughly $9.90 to $17.36. The figures are modeled from self-reported data, not from job postings. No wage figure for a store manager or an events coordinator was found.
+>
+> Sources: [PayScale: Retail Sales Associate hourly pay, Knoxville](https://www.payscale.com/research/US/Job=Retail_Sales_Associate/Hourly_Rate/dd5de87b/Knoxville-TN)
+>
+> **Verify with:** Current local job postings, and the Tennessee Department of Labor and Workforce Development.
+
+> **Research (unverified):** Typical staffing. IBISWorld puts the average US record store at about 3.8 employees. This is an industry average across a mixed group of businesses, not specific to owner-operated shops. No survey of independent record stores was found.
+>
+> Sources: [IBISWorld: Record Stores in the US, employment](https://www.ibisworld.com/united-states/employment/record-stores/1087)
+>
+> **Verify with:** Independent record store trade groups, and other local shop owners.
+
+See [](06-licensing-and-legal.md#employer-obligations) for what hiring triggers.
+
+### Open questions
+
+- Where and how to recruit.
+- What training staff will need, including seller training and age checks for alcohol (see [](06-licensing-and-legal.md#alcohol-licensing)) and hemp drinks (see [](06-licensing-and-legal.md#hemp-drink-licensing)).
+- What pay the owner intends.
+- What schedule counter staff would work.
