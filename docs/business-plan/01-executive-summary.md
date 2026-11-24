@@ -2,7 +2,7 @@
 
 ## Concept
 
-TODO: Describe the record store and listening lounge in a few sentences.
+Spun Records and Lounge is a new and used record store with lounge seating and tables in an open floor plan, planned for Knoxville, Tennessee, with the final site still undecided. It sells records, apparel, artwork, audio gear, and small items such as patches, pins, and stickers. Drinks are sold at the checkout counter, with no bar and no bartender. Music always comes from full records on the turntable or from live performances, and events promote the arts, especially locally. The space aims to be a safe, friendly, calming community space with a retro, groovy look. See [](02-concept-and-vision.md#mission) for the mission.
 
 ## Opportunity
 
