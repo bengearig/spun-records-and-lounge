@@ -18,10 +18,26 @@ See [](03-market-analysis.md#competitors) and [](03-market-analysis.md#trends) f
 
 ## Ask
 
-TODO: Describe the funding or support being sought and how it will be used.
+TODO: The funding or support being sought, and how it will be used, are not yet stated. Add them here.
+
+To complete this section, the following are needed:
+
+- The amount of funding sought.
+- The source of the funding.
+- The terms of the funding.
+- How the funding will be used.
+- Startup costs and projections from the financial plan.
 
 The sales level at which the business covers its costs is derived in [](09-financial-plan.md#break-even).
 
 ## Highlights
 
-TODO: Describe the key strengths and milestones that make the case.
+- A record store and lounge in one open space.
+- A no-bar, no-bartender model aimed at efficient, cost-effective service.
+- Music only from full records or live performers.
+- Events that promote local arts.
+- A curated, minimalist selection.
+- A calming community space with a retro, groovy look.
+- Hemp-derived THC drinks are intended but depend on unresolved federal and state licensing; see [](06-licensing-and-legal.md#hemp-drink-licensing).
+
+TODO: No timeline has been given. Add the key milestones here.
