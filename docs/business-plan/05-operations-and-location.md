@@ -44,4 +44,15 @@ TODO: Describe seasonal or holiday changes and event-night hours.
 
 ## Staffing Model
 
-TODO: Describe who is needed on the floor and at the checkout counter, and when.
+At opening, the owner is the only person on the floor and at the checkout counter.
+
+The owner works about 50 hours per week. That is the open hours (see [](05-operations-and-location.md#hours)) plus 15 minutes of pre-shift labor and 45 minutes of post-shift labor on each open day.
+
+Counter staff, then a manager, then an events coordinator are added as the business can afford them (see [](08-organization.md#roles)).
+
+### Open questions
+
+- Who covers the counter during time off or illness.
+- Who closes when more than one person is working.
+- How events change who is needed.
+- What the owner does during the pre-shift and post-shift time.
