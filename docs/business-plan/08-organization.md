@@ -23,7 +23,21 @@ TODO: Ask the owner for their background, experience, and skills, covering:
 
 ## Roles
 
-TODO: Describe positions to be filled and their responsibilities.
+At opening the owner performs every role. Roles are added in the order below as the business can afford them.
+
+| Role | Responsibilities stated | Status |
+| --- | --- | --- |
+| Owner | Does everything at opening. | In place at opening |
+| Counter staff | Sell drinks and records at the checkout counter. The owner wants one or two, depending on volume. | First hire, when affordable |
+| Manager | Ensures everything operates correctly, including restocking, talking to customers, and managing personnel. | Second hire, when affordable |
+| Events coordinator | TODO: not yet described. | Third hire, when affordable |
+
+### Open questions
+
+- What level of volume or revenue triggers each hire.
+- How many hours per week each role works.
+- Whether the manager or the owner will hold the seller training and permit responsibilities (see [](06-licensing-and-legal.md#alcohol-licensing)).
+- What the events coordinator would do.
 
 ## Advisors
 
