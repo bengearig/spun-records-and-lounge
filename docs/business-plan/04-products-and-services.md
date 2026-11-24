@@ -14,8 +14,10 @@ Drinks are sold at the checkout counter by counter staff. There is no bar and no
 
 **Alcoholic drinks**
 
-- Rotating white wine, red wine, dessert wine, seltzer, and cider, sold as single-serve cans or bottles.
-- Beer on tap: ultimately three rotating beers, for example an IPA, a lager, and a stout, with the rotation always changing. Taps are a planned exception to the packaged-only approach, and counter staff pour.
+- Beer: a rotating selection, for example an IPA, a lager, and a stout, served from a can or bottle.
+- Rotating seltzer and cider, sold as single-serve cans or bottles.
+
+All drinks are consumed on-premises only.
 
 **Non-alcoholic drinks**
 
@@ -26,7 +28,7 @@ Drinks are sold at the checkout counter by counter staff. There is no bar and no
 
 Snacks such as chips, pretzels, chocolates, and nuts.
 
-TODO: Describe drink and snack pricing, sourcing, and the beer, wine, seltzer, and cider rotation process. These are undecided, as is whether drinks can be taken away or only consumed in the space. Tap equipment and the licensing and permits for drinks and food are also open (see [](06-licensing-and-legal.md)).
+TODO: Describe drink and snack pricing, sourcing, and the beer, seltzer, and cider rotation process. These are undecided, as are the licensing and permits for drinks and food (see [](06-licensing-and-legal.md)).
 
 ## Events and Listening Sessions
 
