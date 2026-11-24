@@ -14,19 +14,28 @@ Drinks are sold at the checkout counter by counter staff. There is no bar and no
 
 **Alcoholic drinks**
 
-- Rotating white wine, red wine, dessert wine, seltzer, and cider, sold as single-serve cans or bottles.
-- Beer on tap: ultimately three rotating beers, for example an IPA, a lager, and a stout, with the rotation always changing. Taps are a planned exception to the packaged-only approach, and counter staff pour.
+- Beer: a rotating selection, for example an IPA, a lager, and a stout, served from a can or bottle.
+- Rotating seltzer and cider, sold as single-serve cans or bottles.
+
+All drinks are consumed on-premises only.
 
 **Non-alcoholic drinks**
 
-- Soda, still water, sparkling water, coffee, and tea.
+- Coffee is pour over and made when ordered.
+- Tea is steeped when ordered from quality loose leaf.
+- The coffee and tea selection rotates.
+- Soda, still water, and sparkling water remain on the menu.
 - Soda and sparkling water may be made from homemade syrups and a carbonation tool such as a SodaStream. Whether this program launches at opening is undecided.
 
 **Snacks**
 
-Snacks such as chips, pretzels, chocolates, and nuts.
+Snacks are pre-packaged, such as chips, pretzels, chocolates, and nuts.
 
-TODO: Describe drink and snack pricing, sourcing, and the beer, wine, seltzer, and cider rotation process. These are undecided, as is whether drinks can be taken away or only consumed in the space. Tap equipment and the licensing and permits for drinks and food are also open (see [](06-licensing-and-legal.md)).
+Baked snacks are under consideration, and the owner is open to them. They would be made with an on-site mixer and small oven, and must be pre-packaged once cooled.
+
+TODO: Whether the on-site oven and baking are permitted is an open licensing question.
+
+TODO: Describe drink and snack pricing, sourcing, and the beer, seltzer, and cider rotation process. These are undecided, as are the licensing and permits for drinks and food (see [](06-licensing-and-legal.md)).
 
 ## Events and Listening Sessions
 
