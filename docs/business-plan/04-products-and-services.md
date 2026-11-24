@@ -21,12 +21,19 @@ All drinks are consumed on-premises only.
 
 **Non-alcoholic drinks**
 
-- Soda, still water, sparkling water, coffee, and tea.
+- Coffee is pour over and made when ordered.
+- Tea is steeped when ordered from quality loose leaf.
+- The coffee and tea selection rotates.
+- Soda, still water, and sparkling water remain on the menu.
 - Soda and sparkling water may be made from homemade syrups and a carbonation tool such as a SodaStream. Whether this program launches at opening is undecided.
 
 **Snacks**
 
-Snacks such as chips, pretzels, chocolates, and nuts.
+Snacks are pre-packaged, such as chips, pretzels, chocolates, and nuts.
+
+Baked snacks are under consideration, and the owner is open to them. They would be made with an on-site mixer and small oven, and must be pre-packaged once cooled.
+
+TODO: Whether the on-site oven and baking are permitted is an open licensing question.
 
 TODO: Describe drink and snack pricing, sourcing, and the beer, seltzer, and cider rotation process. These are undecided, as are the licensing and permits for drinks and food (see [](06-licensing-and-legal.md)).
 
