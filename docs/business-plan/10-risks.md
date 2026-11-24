@@ -6,7 +6,25 @@ TODO: Describe demand shifts, competition, and changing tastes.
 
 ## Operational Risks
 
-TODO: Describe supply, staffing, equipment, and inventory issues.
+TODO: Describe supply, equipment, and inventory issues. Staffing risks are covered below.
+
+Staffing risks:
+
+- One person covers every open hour at opening, so the shop depends on a single person being available.
+- Time off, illness, or burnout may close the shop.
+- Closing and cash handling happen alone.
+- Seller training, age checks, and permit responsibilities rest on one person.
+- Hiring later adds payroll and employer obligations. See [](06-licensing-and-legal.md#employer-obligations).
+
+> **Suggestion (to confirm):** Options the owner has not decided include a trusted backup person, scheduled closure days, or making the first hire part-time.
+>
+> **Confirm with:** The owner.
+
+### Open questions
+
+- Who covers the owner during illness or time off?
+- How will the owner handle closing alone?
+- Is any time off planned in the first year?
 
 ## Regulatory Risks
 
