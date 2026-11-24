@@ -2,7 +2,22 @@
 
 ## Business Entity
 
-TODO: Describe chosen legal structure and registration steps.
+The business entity type is undecided. The choice may depend on what the licensing and legal work turns up, including how the beer permit application treats the applicant.
+
+> **Research (unverified):** These Tennessee LLC figures come from commercial sites, not official sources. The filing fee is about $50 per member (minimum $300, maximum $3,000). The annual report is due April 1 for calendar-year LLCs, at the same fee structure. Franchise tax is about 0.25% of the greater of net worth or Tennessee property (minimum $100). Excise tax is about 6.5% of net earnings. Other entity types, such as an S-corp, were not researched beyond this.
+>
+> Sources: [Wolters Kluwer: Tennessee LLC requirements](https://www.wolterskluwer.com/en/solutions/bizfilings/state-guides/tennessee-llc-requirements), [Nolo: LLC annual report and taxes](https://www.nolo.com/legal-encyclopedia/annual-report-tax-filing-requirements-tennessee-llcs.html)
+>
+> **Verify with:** Tennessee Secretary of State, Division of Business Services; Tennessee Department of Revenue.
+
+### Open questions
+
+For an attorney or accountant:
+
+- Which entity type fits the business.
+- How the entity choice interacts with the beer permit application.
+- What the choice means for personal liability.
+- What the choice means for taxes.
 
 ## Alcohol Licensing
 
