@@ -32,7 +32,15 @@ TODO: Describe distributors, used-record sourcing, and beverage suppliers.
 
 ## Hours
 
-TODO: Describe opening hours by day and seasonal changes.
+These hours are the current intention and may change.
+
+| Day | Hours |
+| --- | --- |
+| Monday | Closed |
+| Tuesday to Friday | 4pm to 10pm |
+| Saturday and Sunday | 12pm to 10pm |
+
+TODO: Describe seasonal or holiday changes and event-night hours.
 
 ## Staffing Model
 
