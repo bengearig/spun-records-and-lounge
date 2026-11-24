@@ -40,6 +40,26 @@ Wine was dropped after research suggested a wine license may not fit a record st
 - What the seltzer and cider products contain, including whether any distilled spirits are present.
 - Whether cider falls under a beer permit.
 
+## Music Licensing
+
+Music always plays in the space, either from full records on the turntable or from live performers. Live performers should prefer original music, and cover bands do not fit the vibe. The owner does not yet know how music licensing applies to the business.
+
+> **Research (unverified):** Search results say the venue is generally responsible for licensing public performance, whether the music is recorded or live, even when performers are hired. Buying a record does not remove the requirement. No vinyl-specific treatment was found.
+>
+> The performing rights organizations (ASCAP, BMI, SESAC, GMR) license compositions. No single organization covers every composer, so a venue may need more than one license. Sound recordings are handled separately by SoundExchange. Fees may be based on a percentage of revenue or other factors.
+>
+> Original-music performers may reduce but not obviously remove licensing needs, because performers' own works may still be registered with a PRO. Not confirmed.
+>
+> Sources: [Texas Governor's Music Office: music in venues](https://gov.texas.gov/music/page/music_in_venues), [Texas: music licensing for your business](https://gov.texas.gov/music/page/music-licensing-for-your-business), [Boston: avoiding copyright infringement](https://boston.gov/departments/entertainment-licensing/avoiding-copyright-infringement). The Texas and Boston pages are not Tennessee sources.
+>
+> **Verify with:** each performing rights organization (ASCAP, BMI, SESAC, GMR) and SoundExchange, using their current terms.
+
+### Open questions
+
+- How records played in the store are treated for licensing.
+- Whether performers' own original material changes what the venue must license.
+- What the cost basis is for each license.
+
 ## Permits
 
 TODO: Describe local business, health, signage, and occupancy permits.
