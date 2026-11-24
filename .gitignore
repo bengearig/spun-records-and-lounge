@@ -7,3 +7,6 @@
 
 # built binary
 /spun
+
+# generated PDFs
+docs/**/*.pdf

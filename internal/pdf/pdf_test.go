@@ -158,7 +158,7 @@ func TestPrintLeavesTempDirEmpty(t *testing.T) {
 	}
 }
 
-// strayTempEntries lists paths under dir other than Chromium's own org.chromium.* scratch entries.
+// strayTempEntries lists paths under dir other than the browser's own scratch entries (org.chromium.* and com.google.Chrome.*).
 func strayTempEntries(dir string) ([]string, error) {
 	var stray []string
 	err := filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
@@ -168,7 +168,7 @@ func strayTempEntries(dir string) ([]string, error) {
 		if path == dir {
 			return nil
 		}
-		if strings.HasPrefix(d.Name(), "org.chromium.") {
+		if strings.HasPrefix(d.Name(), "org.chromium.") || strings.HasPrefix(d.Name(), "com.google.Chrome.") {
 			if d.IsDir() {
 				return filepath.SkipDir
 			}

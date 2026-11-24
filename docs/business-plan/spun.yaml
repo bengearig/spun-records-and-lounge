@@ -1,0 +1,26 @@
+title: "Spun Records and Lounge: Business Plan"
+subtitle: "A vinyl record store and listening lounge"
+author: Benjamin Gearig
+documents:
+  - 01-executive-summary.md
+  - 02-concept-and-vision.md
+  - 03-market-analysis.md
+  - 04-products-and-services.md
+  - 05-operations-and-location.md
+  - 06-licensing-and-legal.md
+  - 07-marketing.md
+  - 08-organization.md
+  - 09-financial-plan.md
+  - 10-risks.md
+  - 11-appendices.md
+template: default
+output: business-plan.pdf
+page:
+  size: letter
+  margins: 1in
+  numbers: true
+numbering:
+  enabled: true
+  depth: 3
+features:
+  math: true
