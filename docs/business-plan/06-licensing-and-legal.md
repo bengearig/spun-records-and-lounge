@@ -108,7 +108,19 @@ The owner does not yet know which permits apply. Food is pre-packaged. Coffee an
 
 ## Insurance
 
-TODO: Describe liability, property, and liquor liability coverage.
+Nothing about insurance is decided or researched yet. What coverage the business needs, and from whom, is still open.
+
+> **Research (unverified):** This is general knowledge, not sourced research. Common coverage types to ask a broker about are general liability, property and contents, liquor liability, workers' compensation if staff are hired, and business interruption.
+>
+> Sources: none (general knowledge)
+>
+> **Verify with:** An insurance broker.
+
+### Open questions
+
+- What coverage the lease requires.
+- Whether on-premises alcohol sales and live music change the coverage the business needs.
+- What the coverage will cost.
 
 ## Leases
 
