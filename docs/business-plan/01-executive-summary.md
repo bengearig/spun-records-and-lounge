@@ -6,7 +6,15 @@ Spun Records and Lounge is a new and used record store with lounge seating and t
 
 ## Opportunity
 
-TODO: Describe the gap in the local market this business fills.
+TODO: The owner's own view of the gap Spun fills is not yet stated. Add it here.
+
+> **Research (unverified):** RIAA's 2025 year-end report lists U.S. vinyl revenue at $1,042.9 million, up about 9.3% from 2024, reported on a wholesale basis. No record store and no listening bar were found in Fountain City, though these searches may be incomplete.
+>
+> Sources: [RIAA: 2025 revenue report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/), [RIAA Year-End Revenue 2025 (PDF)](https://www.riaa.com/wp-content/uploads/2026/03/RIAA-Year-End-Revenue-2025.pdf), [Record Store directory: Knoxville](https://recordstore.com/stores/tennessee/knoxville), [Record Shops directory: Knoxville](https://www.recordshops.net/tennessee/knoxville/), [Fodor's: bars in Knoxville](https://www.fodors.com/world/north-america/usa/tennessee/places/knoxville/things-to-do/nightlife), [The Scout Guide: Knoxville bar guide](https://thescoutguide.com/knoxville/editorial/the-knoxville-bar-guide/)
+>
+> **Verify with:** The RIAA report, each shop and venue directly, and a site visit.
+
+See [](03-market-analysis.md#competitors) and [](03-market-analysis.md#trends) for the details.
 
 ## Ask
 
