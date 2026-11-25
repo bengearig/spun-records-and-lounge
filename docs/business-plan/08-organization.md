@@ -8,18 +8,24 @@ The owner is the sole owner today. Ownership may change as startup capital is ra
 
 The owner works the shop at opening, about 50 hours per week. That is the open hours in [](05-operations-and-location.md#hours) plus 15 minutes of pre-shift labor and 45 minutes of post-shift labor on each open day.
 
-TODO: Ask the owner for their background, experience, and skills, covering:
+The owner has run a discount beer and tobacco convenience store. The owner was general manager of that business and of a brick oven pizza restaurant on the same property for a couple of years, and has food truck experience. Managing the restaurant gave the owner experience serving alcohol and understanding the rules around it, and the owner has been ServSafe certified. The owner has not owned a business beyond a few software engineering contract jobs, so the running of a business was as a manager.
 
-- Retail experience.
-- Music or record knowledge.
-- Hospitality and drinks service.
-- Event or venue experience.
-- Business or finance experience.
+The owner has been collecting vinyl for just over a year and has had a lifelong deep interest in music, which accelerated in the owner's mid 20s. The owner says their software engineering experience can help analyze a record's output for static, pops, skips, and similar issues.
+
+The owner has lived in the Fountain City area for nearly two years and in East Tennessee for 24 years.
+
+The owner describes their strengths as strong customer service, an eye for design, and an engineering attitude.
+
+The concept for Spun came from the owner's spouse, as a good fit for the owner. The owner first wanted a food truck, but the work was not what they wanted. The owner wants a space that promotes local creatives, fosters community, offers a safe and relaxing atmosphere, and goes above and beyond to serve record collectors. The support the owner's spouse gives is described in [](08-organization.md#advisors).
+
+Spun is the owner's full-time job for as long as needed. The owner expects to pursue other business endeavors in the future as the possibility arises.
 
 ### Open questions
 
 - How ownership could change as capital is raised.
 - Who else, if anyone, would hold a share.
+- Whether the owner holds or will take seller training for Spun's beer permit (see [](06-licensing-and-legal.md#alcohol-licensing)).
+- How ServSafe relates to Spun, if at all.
 
 ## Roles
 
@@ -27,7 +33,7 @@ At opening the owner performs every role. Roles are added in the order below as 
 
 | Role | Responsibilities stated | Status |
 | --- | --- | --- |
-| Owner | Does everything at opening. | In place at opening |
+| Owner | Does everything at opening, including events, with coaching from the owner's spouse (see [](08-organization.md#advisors)). | In place at opening |
 | Counter staff | Sell drinks and records at the checkout counter. The owner wants one or two, depending on volume. | First hire, when affordable |
 | Manager | Ensures everything operates correctly, including restocking, talking to customers, and managing personnel. | Second hire, when affordable |
 | Events coordinator | TODO: not yet described. | Third hire, when affordable |
@@ -41,9 +47,9 @@ At opening the owner performs every role. Roles are added in the order below as 
 
 ## Advisors
 
-No advisors are named yet.
+The owner has informal support from the owner's spouse, who is not named in this plan. The spouse owns a cafe and shares first-hand knowledge of running one. The owner describes the spouse as excellent at running events across a variety of venue types, and the spouse will coach the owner on events. The spouse also has connections to local artists. This is informal support, not a named advisor, owner, or employee.
 
-TODO: Owner, please name any mentors or advisors who support the business.
+TODO: Owner, please name any other mentors or advisors who support the business, beyond the spouse.
 
 ### Open questions
 
@@ -52,6 +58,8 @@ TODO: Owner, please name any mentors or advisors who support the business.
 - Does the owner have an insurance broker?
 - Does the owner have a mentor who runs a record store or a similar business?
 - Could other local shop owners be asked for advice?
+- What role, if any, would the spouse have in events at the shop?
+- Would the spouse be paid or compensated for that role?
 
 ## Hiring Plan
 
