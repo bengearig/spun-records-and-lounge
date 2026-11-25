@@ -33,7 +33,7 @@ At opening the owner performs every role. Roles are added in the order below as 
 
 | Role | Responsibilities stated | Status |
 | --- | --- | --- |
-| Owner | Does everything at opening. | In place at opening |
+| Owner | Does everything at opening, including events, with coaching from the owner's spouse (see [](08-organization.md#advisors)). | In place at opening |
 | Counter staff | Sell drinks and records at the checkout counter. The owner wants one or two, depending on volume. | First hire, when affordable |
 | Manager | Ensures everything operates correctly, including restocking, talking to customers, and managing personnel. | Second hire, when affordable |
 | Events coordinator | TODO: not yet described. | Third hire, when affordable |
@@ -47,9 +47,9 @@ At opening the owner performs every role. Roles are added in the order below as 
 
 ## Advisors
 
-No advisors are named yet.
+The owner has informal support from the owner's spouse, who is not named in this plan. The spouse owns a cafe and shares first-hand knowledge of running one. The owner describes the spouse as excellent at running events across a variety of venue types, and the spouse will coach the owner on events. The spouse also has connections to local artists. This is informal support, not a named advisor, owner, or employee.
 
-TODO: Owner, please name any mentors or advisors who support the business.
+TODO: Owner, please name any other mentors or advisors who support the business, beyond the spouse.
 
 ### Open questions
 
@@ -58,6 +58,8 @@ TODO: Owner, please name any mentors or advisors who support the business.
 - Does the owner have an insurance broker?
 - Does the owner have a mentor who runs a record store or a similar business?
 - Could other local shop owners be asked for advice?
+- What role, if any, would the spouse have in events at the shop?
+- Would the spouse be paid or compensated for that role?
 
 ## Hiring Plan
 
