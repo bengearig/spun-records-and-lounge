@@ -47,14 +47,20 @@ TODO: Confirm the customer segments and what each wants.
 >
 > **Verify with:** The venues' own calendars, and a site visit.
 
+The owner wants Spun to go above and beyond to serve record collectors and to take a minimalist approach. The owner sees the minimalist approach as Spun's intended edge. Whether it sets Spun apart from the shops and venues above has not been tested.
+
 > **Suggestion (to confirm):** How Spun differs, drawn from the concept documents:
 >
 > - A record store and a lounge in one space.
 > - Music played only from full records or by live performers.
 > - Events that promote local arts.
-> - A curated, minimalist selection.
 >
 > **Confirm with:** The owner.
+
+### Open questions
+
+- What does serving record collectors above and beyond mean in practice, and is the record-flaw analysis the owner can do (see [the Founder section](08-organization.md#founder)) part of it?
+- How will the owner tell whether minimalism differentiates Spun from the competitors above?
 
 TODO: Competitors' pricing was not found. Gather prices at competing record stores and bars.
 
