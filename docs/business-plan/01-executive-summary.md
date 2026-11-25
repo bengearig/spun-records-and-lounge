@@ -6,7 +6,9 @@ Spun Records and Lounge is a new and used record store with lounge seating and t
 
 ## Opportunity
 
-TODO: The owner's own view of the gap Spun fills is not yet stated. Add it here.
+In the owner's view, Spun is meant to be a space that promotes local creatives, fosters community, offers a safe and relaxing place to hang out, and goes above and beyond to serve record collectors. The owner intends a minimalist approach to be its edge. See [](02-concept-and-vision.md#mission) for the mission and [](08-organization.md#founder) for the owner's background.
+
+TODO: The owner has not yet said what is missing locally that Spun fills.
 
 > **Research (unverified):** RIAA's 2025 year-end report lists U.S. vinyl revenue at $1,042.9 million, up about 9.3% from 2024, reported on a wholesale basis. No record store and no listening bar were found in Fountain City, though these searches may be incomplete.
 >
