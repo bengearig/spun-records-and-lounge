@@ -20,7 +20,7 @@ See [](03-market-analysis.md#competitors) and [](03-market-analysis.md#trends) f
 
 ## Ask
 
-Spun is planned in stages, with a base version funded first and stretch goals added as it becomes possible. The estimated amount to open the base is {{costs:goal.base}}, and the estimated amount with every stretch goal is {{costs:total}}. The [](09-financial-plan.md#funding-goals) section sets out each goal, and [](09-financial-plan.md#startup-costs) shows what each level adds.
+Spun is planned in stages, with a base version funded first and stretch goals added as it becomes possible. The estimated amount to open the base is {{costs:goal.base}}, and the estimated amount with every stretch goal is {{costs:total}}. See [](09-financial-plan.md#funding-goals) for each goal and [](09-financial-plan.md#startup-costs) for what each level adds.
 
 ```costs
 goals
