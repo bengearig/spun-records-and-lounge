@@ -431,3 +431,113 @@ items:
     owner_input: true
     source: "D-25: Opening inventory and sourcing, coffee and tea supplies"
     notes: "No figure found."
+  - id: entity-formation
+    category: licensing
+    level: base
+    name: "Business entity formation"
+    low: 300
+    expected: 300
+    high: 300
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, entity formation"
+    notes: "The entity is undecided (D-11), and the Tennessee LLC filing fee is used as the estimate."
+  - id: beer-permit
+    category: licensing
+    level: base
+    name: "Beer permit"
+    low: 250
+    expected: 250
+    high: 250
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, beer permit"
+    notes: "The fee is the Knox County Clerk's outside city limits. The Knoxville city fee was not found."
+  - id: business-licenses
+    category: licensing
+    level: base
+    name: "City and county business licenses"
+    low: 30
+    expected: 30
+    high: 30
+    status: estimate
+    owner_input: false
+    source: "D-12: business license application fees"
+    notes: "$15 application each for the city and the county."
+  - id: seller-training
+    category: licensing
+    level: base
+    name: "Seller training and police records check"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, seller training and records check"
+    notes: "No cost found."
+  - id: attorney-accountant
+    category: licensing
+    level: base
+    name: "Attorney and accountant setup"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, attorney and accountant"
+    notes: "No figure found."
+  - id: hemp-license-fees
+    category: licensing
+    level: base
+    name: "Hemp drink license fees (contingent)"
+    low: 1500
+    expected: 1500
+    high: 1500
+    status: estimate
+    owner_input: true
+    source: "D-15: hemp licensing fees"
+    notes: "$500 application plus $1,000 annual retail fee for the first year. Contingent on eligibility being resolved (D-15): eligibility with a beer permit only is unresolved, so this may never apply. It sits in the base because all drinks are in the base."
+  - id: brand-design
+    category: launch
+    level: base
+    name: "Logo and brand design"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch, logo and brand design"
+    notes: "No figure found."
+  - id: website
+    category: launch
+    level: base
+    name: "Website"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch, website"
+    notes: "No figure found."
+  - id: opening-event
+    category: launch
+    level: base
+    name: "Opening event"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch, opening event"
+    notes: "No figure found."
+  - id: initial-marketing
+    category: launch
+    level: base
+    name: "Initial marketing"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch, initial marketing"
+    notes: "Only percent-of-revenue guidance was found (D-25), and there is no revenue estimate yet."
