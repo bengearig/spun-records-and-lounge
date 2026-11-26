@@ -35,6 +35,10 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 	if err != nil {
 		return "", err
 	}
+	features, err = configureFeatures(features, b)
+	if err != nil {
+		return "", err
+	}
 
 	var extensions []goldmark.Extender
 	var head templates.HeadInjections
@@ -74,6 +78,24 @@ func Run(ctx context.Context, b *bundle.Bundle, opts RunOptions) (string, error)
 	}
 	if err := writeAtomic(out, data); err != nil {
 		return "", err
+	}
+	return out, nil
+}
+
+// configureFeatures swaps each Configurable feature for its per-bundle form.
+func configureFeatures(features []feature.Feature, b *bundle.Bundle) ([]feature.Feature, error) {
+	out := make([]feature.Feature, len(features))
+	for i, f := range features {
+		c, ok := f.(feature.Configurable)
+		if !ok {
+			out[i] = f
+			continue
+		}
+		cf, err := c.Configure(feature.BundleInfo{Dir: b.Dir, Options: b.Config.Features[f.Name()].Options})
+		if err != nil {
+			return nil, fmt.Errorf("features.%s: %w", f.Name(), err)
+		}
+		out[i] = cf
 	}
 	return out, nil
 }
