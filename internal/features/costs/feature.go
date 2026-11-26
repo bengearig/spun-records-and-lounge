@@ -10,6 +10,9 @@ import (
 
 	"github.com/bengearig/spun-records-and-lounge/internal/feature"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer"
+	"github.com/yuin/goldmark/util"
 )
 
 // Name is the feature name used in spun.yaml.
@@ -88,4 +91,11 @@ type extension struct {
 	data *Data
 }
 
-func (extension) Extend(goldmark.Markdown) {}
+func (e extension) Extend(m goldmark.Markdown) {
+	m.Parser().AddOptions(
+		parser.WithInlineParsers(util.Prioritized(inlineParser{}, 200)),
+	)
+	m.Renderer().AddOptions(
+		renderer.WithNodeRenderers(util.Prioritized(nodeRenderer{data: e.data}, 500)),
+	)
+}

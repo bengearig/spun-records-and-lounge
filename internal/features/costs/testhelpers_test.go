@@ -1,6 +1,9 @@
 package costs
 
 import (
+	"github.com/bengearig/spun-records-and-lounge/internal/bundle"
+	"github.com/bengearig/spun-records-and-lounge/internal/feature"
+	"github.com/bengearig/spun-records-and-lounge/internal/render"
 	"os"
 	"path/filepath"
 	"testing"
@@ -35,4 +38,26 @@ func writeFile(t *testing.T, dir, name, body string) string {
 		t.Fatal(err)
 	}
 	return path
+}
+
+// assemble renders markdown as the only document of a bundle with costs enabled.
+func assemble(t *testing.T, data, markdown string) ([]render.Doc, error) {
+	t.Helper()
+	dir := t.TempDir()
+	writeFile(t, dir, "spun.yaml", "title: T\ndocuments:\n  - a.md\nfeatures:\n  costs:\n    file: costs.yaml\n")
+	writeFile(t, dir, "costs.yaml", data)
+	writeFile(t, dir, "a.md", markdown)
+	b, err := bundle.Load(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	f, err := feature.Default.Lookup(Name)
+	if err != nil {
+		t.Fatal(err)
+	}
+	cf, err := f.(feature.Configurable).Configure(feature.BundleInfo{Dir: b.Dir, Options: b.Config.Features[Name].Options})
+	if err != nil {
+		t.Fatal(err)
+	}
+	return render.Assemble(b, cf.(feature.MarkdownExtender).Extenders())
 }
