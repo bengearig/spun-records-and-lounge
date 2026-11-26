@@ -95,6 +95,9 @@ var tableKinds = map[string]tableKind{
 	"categories": {build: buildCategories},
 	"items":      {options: []string{"category", "level", "source"}, build: buildItems},
 	"reserve":    {build: buildReserve},
+	"goals":      {build: buildGoals},
+	"adds":       {build: buildAdds},
+	"level":      {options: []string{"id"}, build: buildLevel},
 }
 
 func buildCategories(d *Data, _ map[string]string) (table, error) {
@@ -184,6 +187,74 @@ func buildReserve(d *Data, _ map[string]string) (table, error) {
 		row("Monthly total", append([]cell{txt("")}, rangeCells(t.Monthly)...)...),
 		row("Reserve months", txt(""), count(months.Low), count(months.Expected), count(months.High)),
 		row("Reserve", append([]cell{txt("")}, rangeCells(t.Reserve)...)...),
+	)
+	return tb, nil
+}
+
+func buildLevelRanges(d *Data, pick func(LevelTotal) Range) (table, error) {
+	t, err := d.Totals()
+	if err != nil {
+		return table{}, err
+	}
+	tb := table{head: []cell{head("Level"), numHead("Low"), numHead("Expected"), numHead("High")}}
+	for _, l := range t.Levels {
+		tb.rows = append(tb.rows, row(l.Name, rangeCells(pick(l))...))
+	}
+	return tb, nil
+}
+
+func buildGoals(d *Data, _ map[string]string) (table, error) {
+	return buildLevelRanges(d, func(l LevelTotal) Range { return l.Goal })
+}
+
+func buildAdds(d *Data, _ map[string]string) (table, error) {
+	return buildLevelRanges(d, func(l LevelTotal) Range { return l.Adds })
+}
+
+func buildLevel(d *Data, opts map[string]string) (table, error) {
+	id, ok := opts["id"]
+	if !ok {
+		return table{}, fmt.Errorf("missing option \"id\" for level")
+	}
+	if _, _, ok := d.Level(id); !ok {
+		return table{}, fmt.Errorf("unknown level %q", id)
+	}
+	t, err := d.Totals()
+	if err != nil {
+		return table{}, err
+	}
+	idx := slices.IndexFunc(t.Levels, func(l LevelTotal) bool { return l.ID == id })
+	if idx < 0 {
+		return table{}, fmt.Errorf("unknown level %q", id)
+	}
+	lt := t.Levels[idx]
+	added := lt.Reserve
+	if idx > 0 {
+		if added, err = lt.Reserve.Sub(t.Levels[idx-1].Reserve); err != nil {
+			return table{}, err
+		}
+	}
+	tb := table{head: []cell{head("Item"), numHead("Low"), numHead("Expected"), numHead("High"), head("Status")}}
+	for _, c := range d.Categories {
+		for _, it := range d.Items {
+			if it.Category != c.ID || it.Level != id {
+				continue
+			}
+			status := it.Status
+			if it.OwnerInput {
+				status += " (owner input needed)"
+			}
+			tb.rows = append(tb.rows, append(row(it.Name, rangeCells(itemRange(it))...), txt(status)))
+		}
+	}
+	total := func(name string, r Range) []cell {
+		return append(row(name, rangeCells(r)...), txt(""))
+	}
+	tb.rows = append(tb.rows,
+		total("Items subtotal", lt.Items),
+		total("Added reserve", added),
+		total("Adds", lt.Adds),
+		total("Goal", lt.Goal),
 	)
 	return tb, nil
 }
