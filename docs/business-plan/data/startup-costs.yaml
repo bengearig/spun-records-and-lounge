@@ -27,6 +27,8 @@
 # - Debt service or loan repayments.
 # - Rent paid on added space while it is being built out.
 # - Any added utilities or insurance from expansion.
+# - Debt service is not modeled, card processing fees are not included, and
+#   rent on added space during its build-out is not modeled.
 #
 # Items with no researched figure are 0 / 0 / 0 and flagged as owner input.
 # Until the owner fills them in, every total is an understatement.
@@ -541,3 +543,115 @@ items:
     owner_input: true
     source: "D-25: Branding, signage, launch, initial marketing"
     notes: "Only percent-of-revenue guidance was found (D-25), and there is no revenue estimate yet."
+
+monthly:
+  - id: rent-and-nnn
+    level: base
+    name: "Rent and NNN charges (1,500 sq ft)"
+    low: 2812.50
+    expected: 3562.50
+    high: 4800
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: rent asking prices"
+    notes: "1,500 sq ft times $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. All-in rates: Middlebrook Pike $20.00 plus the $2.50 Kingston Pike NNN estimate; North Knoxville Charlie Haun Drive $25 plus $3.50; Clinton Highway $32 plus $6.40."
+  - id: insurance
+    level: base
+    name: "General and liquor liability insurance"
+    low: 72.75
+    expected: 125.42
+    high: 262.50
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, insurance"
+    notes: "Annual general liability $573 / $1,030 / $2,500 plus annual liquor liability $300 / $475 / $650, divided by 12 and rounded to the cent."
+  - id: music-licensing
+    level: base
+    name: "Music licensing"
+    low: 30.42
+    expected: 83.33
+    high: 375
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, music licensing"
+    notes: "Annual $365 / $1,000 / $4,500 divided by 12, rounded to the cent."
+  - id: pos-subscription
+    level: base
+    name: "Point-of-sale software"
+    low: 0
+    expected: 49
+    high: 149
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: point of sale"
+    notes: "Free tier, then paid tiers at $49 and $149 a month. Card processing fees are variable with sales and not included."
+  - id: entity-annual-fee
+    level: base
+    name: "Business entity annual fee"
+    low: 25
+    expected: 25
+    high: 25
+    status: estimate
+    owner_input: true
+    source: "D-25: Licenses, legal, insurance, entity formation"
+    notes: "$300 a year Tennessee LLC annual report divided by 12. The entity is undecided (D-11)."
+  - id: utilities
+    level: base
+    name: "Utilities"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: cost categories"
+    notes: "No figure found."
+  - id: payroll
+    level: base
+    name: "Staff wages"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: cost categories"
+    notes: "No figure counted. The owner works the shop at opening (D-20); hires come later."
+  - id: owner-pay
+    level: base
+    name: "Owner pay"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: cost categories"
+    notes: "No figure counted. The owner has not said whether to include it."
+  - id: marketing
+    level: base
+    name: "Ongoing marketing"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch, initial marketing"
+    notes: "No figure found. Only percent-of-revenue guidance was found, and there is no revenue estimate yet."
+  - id: rent-expansion-1
+    level: stretch-1
+    name: "Added rent for 500 sq ft"
+    low: 937.50
+    expected: 1187.50
+    high: 1600
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: rent asking prices"
+    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
+  - id: rent-expansion-2
+    level: stretch-2
+    name: "Added rent for another 500 sq ft"
+    low: 937.50
+    expected: 1187.50
+    high: 1600
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: rent asking prices"
+    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
