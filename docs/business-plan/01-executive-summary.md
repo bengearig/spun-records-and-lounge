@@ -20,15 +20,25 @@ See [](03-market-analysis.md#competitors) and [](03-market-analysis.md#trends) f
 
 ## Ask
 
-TODO: The funding or support being sought, and how it will be used, are not yet stated. Add them here.
+Spun is planned in stages, with a base version funded first and stretch goals added as it becomes possible. The estimated amount to open the base is {{costs:goal.base}}, and the estimated amount with every stretch goal is {{costs:total}}. The [](09-financial-plan.md#funding-goals) section sets out each goal, and [](09-financial-plan.md#startup-costs) shows what each level adds.
 
-To complete this section, the following are needed:
+```costs
+goals
+```
 
-- The amount of funding sought.
+> **Research (unverified):** These amounts come from the cost data file. Its figures are placeholders drawn from unverified research and the owner's working assumptions about floor area, seats, and display units. They are not quotes. Items with no researched figure are shown as zero and flagged as owner input, so every total understates the real cost.
+>
+> Sources: the cost data file, whose items each name their research; see [](11-appendices.md#startup-cost-detail).
+>
+> **Verify with:** Supplier quotes, a local general contractor bid, a commercial real estate broker, and an insurance broker.
+
+TODO: The funding source, its terms, and how the funds will be used are not yet stated. Add them here. Still needed:
+
 - The source of the funding.
 - The terms of the funding.
-- How the funding will be used.
-- Startup costs and projections from the financial plan.
+- How the funds will be used.
+- The owner's own contribution (no figure has been given).
+- Projections from the financial plan.
 
 The sales level at which the business covers its costs is derived in [](09-financial-plan.md#break-even).
 
