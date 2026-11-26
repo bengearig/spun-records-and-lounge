@@ -24,3 +24,5 @@ numbering:
   depth: 3
 features:
   math: true
+  costs:
+    file: data/startup-costs.yaml
