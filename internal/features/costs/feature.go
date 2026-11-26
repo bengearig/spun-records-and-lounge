@@ -94,6 +94,7 @@ type extension struct {
 func (e extension) Extend(m goldmark.Markdown) {
 	m.Parser().AddOptions(
 		parser.WithInlineParsers(util.Prioritized(inlineParser{}, 200)),
+		parser.WithASTTransformers(util.Prioritized(blockTransformer{}, 100)),
 	)
 	m.Renderer().AddOptions(
 		renderer.WithNodeRenderers(util.Prioritized(nodeRenderer{data: e.data}, 500)),

@@ -68,6 +68,7 @@ type nodeRenderer struct {
 
 func (r nodeRenderer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(KindInline, r.renderInline)
+	reg.Register(KindBlock, r.renderBlock)
 }
 
 func (r nodeRenderer) renderInline(w util.BufWriter, source []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
