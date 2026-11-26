@@ -49,6 +49,9 @@ off until a bundle enables it. [`internal/features/math`](internal/features/math
      parsers and renderer.
    - `feature.Stage`: `StageName()`, `Phase()` (`feature.PreRender` or `feature.PostRender`), and
      `Process(doc string) (string, error)` to transform the source or the HTML.
+   - `feature.Configurable`: `Configure(feature.BundleInfo) (feature.Feature, error)` returns the feature to use for one
+     bundle. It receives the bundle directory and the feature's `spun.yaml` options. The costs feature uses this to
+     load its data file; see [`internal/features/costs`](internal/features/costs).
    - `feature.CommandProvider`: `Commands()` returns extra cobra commands.
    - `feature.Assets`: `HeadHTML()`, `Styles()`, and `Scripts()` add to the page head. Math uses this to embed KaTeX.
 4. **Register from `init()`** on the shared registry. Registering a name twice panics:
