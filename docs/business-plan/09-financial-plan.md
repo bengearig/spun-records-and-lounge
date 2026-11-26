@@ -103,4 +103,19 @@ Where:
 
 ## Funding
 
+### Funding goals
+
+The plan is staged. The owner intends to fund a base version of the business as a foundation first and to fund the extras as it becomes possible, so each goal below is cumulative. See [](09-financial-plan.md#startup-costs) for what each level contains.
+
+```costs
+goals
+```
+
+- **Base: 1,500 sq ft.** The goal to open the base is {{costs:goal.base}}.
+- **Stretch 1: grow to 2,000 sq ft.** This adds {{costs:level.stretch-1}}, for a goal of {{costs:goal.stretch-1}}.
+- **Stretch 2: grow to 2,500 sq ft.** This adds {{costs:level.stretch-2}}, for a goal of {{costs:goal.stretch-2}}.
+- **Stretch 3: live music and wall mural.** This adds {{costs:level.stretch-3}}, for a goal of {{costs:goal.stretch-3}}.
+
+These amounts are estimates; see the notice under [](09-financial-plan.md#startup-costs).
+
 TODO: Describe sources of capital, terms, and use of funds.
