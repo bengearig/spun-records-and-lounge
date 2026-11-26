@@ -387,3 +387,47 @@ items:
     owner_input: true
     source: "D-25: Fixtures and furniture: record display"
     notes: "No commercial listening-station price found."
+  - id: record-inventory
+    category: inventory
+    level: base
+    name: "Opening record inventory (new and used)"
+    low: 9000
+    expected: 20000
+    high: 35000
+    status: estimate
+    owner_input: true
+    source: "D-25: Opening inventory and sourcing, record inventory"
+    notes: "30% / 40% / 50% of $30,000 / $50,000 / $70,000, from whole-store record-shop guides putting inventory at 30 to 50 percent. The vintage-focused band up to $150,000 is not used. The split between new and used records is the owner's choice."
+  - id: other-merchandise
+    category: inventory
+    level: base
+    name: "Apparel, art, audio gear, and small items"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Opening inventory and sourcing, other merchandise"
+    notes: "No figure found."
+  - id: drinks-and-snacks
+    category: inventory
+    level: base
+    name: "Opening drink and snack stock"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Opening inventory and sourcing, drinks and snacks"
+    notes: "No figure found. All drinks are in the base."
+  - id: coffee-tea-supplies
+    category: inventory
+    level: base
+    name: "Coffee and tea supplies"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Opening inventory and sourcing, coffee and tea supplies"
+    notes: "No figure found."
