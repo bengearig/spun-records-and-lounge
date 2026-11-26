@@ -1,0 +1,389 @@
+# Startup costs for Spun Records and Lounge (D-29, D-28).
+#
+# Every amount in this file is an unverified placeholder drawn from unverified
+# research (D-25). Nothing here is a quote. Each one is to be replaced with the
+# owner's own inputs (D-27); items flagged as owner input still need them.
+#
+# Working assumptions (owner-chosen placeholders, not facts):
+# - Floor area by level: base 1,500 sq ft, stretch 1 adds 500 (2,000 total),
+#   stretch 2 adds 500 (2,500 total). Same site; no site is chosen (D-11).
+#   Low / expected / high mean price uncertainty at that size, not size.
+# - Seats at the base: 12 / 24 / 40 at $55 / $200 / $350 per seat. Each
+#   expansion adds a third of the base, rounded: 4 / 8 / 13 seats.
+# - Record display units at the base: 6 / 10 / 16 at $50 / $700 / $1,200 each.
+#   Each expansion adds 2 / 3 / 5 units.
+# - Rent: all-in $22.50 / $28.50 / $38.40 per sq ft per year (asking rents, not
+#   leases), divided by 12, times the sq ft the level adds.
+# - Build-out: $17 / $40 / $90 per sq ft times the sq ft that level builds.
+# - Security deposit: 1 / 3 / 6 months of rent on the space added at that level.
+# - Reserve months added: 3 at the base and 3 more at each stretch level, for
+#   low, expected, and high alike (running total 3 / 6 / 9 / 12).
+# - All drinks, including the contingent hemp license fees (D-15), are in the
+#   base. Live-music sound gear and listening stations are in stretch 3 with
+#   the wall mural.
+#
+# Left out (decisions still open):
+# - Oven and mixer for baked snacks.
+# - Debt service or loan repayments.
+# - Rent paid on added space while it is being built out.
+# - Any added utilities or insurance from expansion.
+#
+# Items with no researched figure are 0 / 0 / 0 and flagged as owner input.
+# Until the owner fills them in, every total is an understatement.
+
+levels:
+  - id: base
+    name: "Base: 1,500 sq ft"
+    description: "Opens the record store and listening lounge in 1,500 sq ft with all drinks."
+    sqft: 1500
+    reserve_months:
+      low: 3
+      expected: 3
+      high: 3
+  - id: stretch-1
+    name: "Stretch 1: grow to 2,000 sq ft"
+    description: "Adds 500 sq ft of built-out space with more record displays and lounge seating."
+    sqft: 2000
+    reserve_months:
+      low: 3
+      expected: 3
+      high: 3
+  - id: stretch-2
+    name: "Stretch 2: grow to 2,500 sq ft"
+    description: "Adds another 500 sq ft of built-out space with more record displays and lounge seating."
+    sqft: 2500
+    reserve_months:
+      low: 3
+      expected: 3
+      high: 3
+  - id: stretch-3
+    name: "Stretch 3: live music and wall mural"
+    description: "Adds live-music sound gear, listening stations, and a wall mural."
+    reserve_months:
+      low: 3
+      expected: 3
+      high: 3
+
+categories:
+  - id: space
+    name: "Space and lease"
+  - id: fixtures
+    name: "Fixtures and furniture"
+  - id: equipment
+    name: "Equipment"
+  - id: inventory
+    name: "Opening inventory"
+  - id: licensing
+    name: "Licenses and legal"
+  - id: launch
+    name: "Branding and launch"
+
+items:
+  - id: security-deposit
+    category: space
+    level: base
+    name: "Security deposit"
+    low: 2812.50
+    expected: 10687.50
+    high: 28800
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: lease security deposit and guarantee"
+    notes: "1 / 3 / 6 months of rent-and-nnn; startups are often asked for 3 to 6 months."
+  - id: pre-opening-rent
+    category: space
+    level: base
+    name: "Rent during build-out"
+    low: 2812.50
+    expected: 7125
+    high: 14400
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: rent asking prices"
+    notes: "1 / 2 / 3 months of rent-and-nnn; a rent-free fixturing period would lower it."
+  - id: lease-legal-review
+    category: space
+    level: base
+    name: "Lease legal review"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: lease security deposit and guarantee"
+    notes: "No figure found."
+  - id: utility-deposits
+    category: space
+    level: base
+    name: "Utility deposits"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: cost categories"
+    notes: "No Knoxville Utilities Board deposit schedule found."
+  - id: build-out
+    category: space
+    level: base
+    name: "Build-out (before any landlord allowance)"
+    low: 25500
+    expected: 60000
+    high: 135000
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: build-out"
+    notes: "$17 / $40 / $90 per sq ft times 1,500 sq ft. Landlord allowances of $15 to $60 per sq ft were reported and are not subtracted."
+  - id: signage
+    category: space
+    level: base
+    name: "Storefront sign"
+    low: 500
+    expected: 2500
+    high: 6000
+    status: estimate
+    owner_input: true
+    source: "D-25: Branding, signage, launch: storefront sign"
+    notes: "Basic sign $500 to $2,500; lit sign $1,500 to $3,000; channel letters $2,500 to $6,000. Low is basic low, expected is basic high, high is channel letters high."
+  - id: security-deposit-expansion-1
+    category: space
+    level: stretch-1
+    name: "Added security deposit (2,000 sq ft)"
+    low: 937.50
+    expected: 3562.50
+    high: 9600
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: lease security deposit and guarantee"
+    notes: "1 / 3 / 6 months of rent-expansion-1."
+  - id: build-out-expansion-1
+    category: space
+    level: stretch-1
+    name: "Build-out of added 500 sq ft"
+    low: 8500
+    expected: 20000
+    high: 45000
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: build-out"
+    notes: "$17 / $40 / $90 per sq ft times 500 sq ft."
+  - id: security-deposit-expansion-2
+    category: space
+    level: stretch-2
+    name: "Added security deposit (2,500 sq ft)"
+    low: 937.50
+    expected: 3562.50
+    high: 9600
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: lease security deposit and guarantee"
+    notes: "1 / 3 / 6 months of rent-expansion-2."
+  - id: build-out-expansion-2
+    category: space
+    level: stretch-2
+    name: "Build-out of added 500 sq ft"
+    low: 8500
+    expected: 20000
+    high: 45000
+    status: estimate
+    owner_input: true
+    source: "D-25: Space: build-out"
+    notes: "$17 / $40 / $90 per sq ft times 500 sq ft."
+  - id: record-display
+    category: fixtures
+    level: base
+    name: "Record display units"
+    low: 300
+    expected: 7000
+    high: 19200
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: record display"
+    notes: "6 / 10 / 16 units times $50 / $700 / $1,200 (dump bin under $50, gondola shelving up to about $700, floor unit about $1,200)."
+  - id: lounge-furniture
+    category: fixtures
+    level: base
+    name: "Lounge seating and tables"
+    low: 660
+    expected: 4800
+    high: 14000
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: furniture"
+    notes: "12 / 24 / 40 seats times $55 / $200 / $350 per seat. The vendor guides cover quick-service and fine-dining restaurants, not lounges."
+  - id: checkout-counter
+    category: fixtures
+    level: base
+    name: "Checkout counter"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: cost categories"
+    notes: "No figure found."
+  - id: lighting-and-decor
+    category: fixtures
+    level: base
+    name: "Lighting and neon decor"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: cost categories"
+    notes: "No figure found."
+  - id: record-display-expansion-1
+    category: fixtures
+    level: stretch-1
+    name: "Added record display units"
+    low: 100
+    expected: 2100
+    high: 6000
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: record display"
+    notes: "2 / 3 / 5 units at the same unit prices as the base."
+  - id: lounge-furniture-expansion-1
+    category: fixtures
+    level: stretch-1
+    name: "Added lounge seating and tables"
+    low: 220
+    expected: 1600
+    high: 4550
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: furniture"
+    notes: "4 / 8 / 13 seats at the same per-seat prices as the base."
+  - id: record-display-expansion-2
+    category: fixtures
+    level: stretch-2
+    name: "Added record display units"
+    low: 100
+    expected: 2100
+    high: 6000
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: record display"
+    notes: "Same as expansion 1: 2 / 3 / 5 units at the base unit prices."
+  - id: lounge-furniture-expansion-2
+    category: fixtures
+    level: stretch-2
+    name: "Added lounge seating and tables"
+    low: 220
+    expected: 1600
+    high: 4550
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: furniture"
+    notes: "Same as expansion 1: 4 / 8 / 13 seats at the base per-seat prices."
+  - id: wall-mural
+    category: fixtures
+    level: stretch-3
+    name: "Wall mural"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: cost categories"
+    notes: "No figure found; owner input needed."
+  - id: pos-hardware
+    category: equipment
+    level: base
+    name: "Point-of-sale hardware"
+    low: 49
+    expected: 349
+    high: 349
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: point of sale"
+    notes: "Card reader $49, terminal $349. The owner may already own hardware."
+  - id: playback-system
+    category: equipment
+    level: base
+    name: "In-store playback system"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cost categories"
+    notes: "Turntables, amplifier, and speakers; no figure found. The owner may already own some."
+  - id: beverage-cooler
+    category: equipment
+    level: base
+    name: "Beverage cooler"
+    low: 600
+    expected: 2000
+    high: 5000
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cafe equipment"
+    notes: "Display refrigerator $600 to $2,000; grab-and-go cooler $2,000 to $5,000."
+  - id: coffee-equipment
+    category: equipment
+    level: base
+    name: "Coffee grinder"
+    low: 500
+    expected: 1500
+    high: 2500
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cafe equipment"
+    notes: "Grinder only, $500 to $2,500 reported. Kettle and pour-over set not priced; no price found."
+  - id: water-filtration
+    category: equipment
+    level: base
+    name: "Water filtration (if needed)"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cafe equipment"
+    notes: "$1,500 to $10,000 was reported but is not counted until the owner decides it is needed."
+  - id: carbonation-tool
+    category: equipment
+    level: base
+    name: "Carbonation tool (optional)"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cost categories"
+    notes: "No figure found."
+  - id: security-alarm
+    category: equipment
+    level: base
+    name: "Security and alarm"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: cost categories"
+    notes: "No figure found."
+  - id: live-sound
+    category: equipment
+    level: stretch-3
+    name: "Live-music sound gear"
+    low: 1100
+    expected: 4000
+    high: 8000
+    status: estimate
+    owner_input: true
+    source: "D-25: Equipment: live sound"
+    notes: "All-in-one portable systems about $1,100 to $1,200; custom-installed sets $4,000 to $8,000. Stage lighting not priced; no figure found."
+  - id: listening-stations
+    category: equipment
+    level: stretch-3
+    name: "Listening stations"
+    low: 0
+    expected: 0
+    high: 0
+    status: estimate
+    owner_input: true
+    source: "D-25: Fixtures and furniture: record display"
+    notes: "No commercial listening-station price found."
