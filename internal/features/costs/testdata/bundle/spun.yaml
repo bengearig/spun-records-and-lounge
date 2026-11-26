@@ -1,0 +1,6 @@
+title: Costs
+documents:
+  - a.md
+features:
+  costs:
+    file: costs.yaml
