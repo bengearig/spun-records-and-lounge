@@ -18,6 +18,8 @@ func (f fake) Name() string { return string(f) }
 func init() {
 	feature.Default.Register(fake("demo"))
 	feature.Default.Register(fake("other"))
+	// The real costs feature imports bundle, so a test here cannot import it.
+	feature.Default.Register(fake("costs"))
 }
 
 func fixture(name string) string { return filepath.Join("testdata", name) }
@@ -209,6 +211,9 @@ func TestBusinessPlanBundle(t *testing.T) {
 	}
 	if !c.Features["math"].Enabled {
 		t.Error("math not enabled")
+	}
+	if f := c.Features["costs"]; !f.Enabled || f.Options["file"] != "data/startup-costs.yaml" {
+		t.Errorf("costs = %+v, want enabled with file data/startup-costs.yaml", f)
 	}
 	if c.Numbering.Depth != 3 {
 		t.Errorf("numbering depth = %d, want 3", c.Numbering.Depth)
