@@ -10,3 +10,6 @@
 
 # generated PDFs
 docs/**/*.pdf
+
+# draw.io autosave backups
+*.bkp
