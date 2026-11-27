@@ -493,6 +493,26 @@ items:
     status: estimate
     source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
     notes: "The owner's range."
+  - id: record-inventory-expansion-1
+    category: inventory
+    level: stretch-1
+    name: "Added record inventory"
+    lines:
+      - quantity: "input.display-units-stretch-1 * input.albums-per-display-unit"
+        unit_price: input.cost-per-album
+    status: estimate
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Stocks the display units this level adds."
+  - id: record-inventory-expansion-2
+    category: inventory
+    level: stretch-2
+    name: "Added record inventory"
+    lines:
+      - quantity: "input.display-units-stretch-2 * input.albums-per-display-unit"
+        unit_price: input.cost-per-album
+    status: estimate
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Stocks the display units this level adds."
   - id: entity-formation
     category: licensing
     level: base
