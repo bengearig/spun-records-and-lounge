@@ -116,24 +116,22 @@ items:
     category: space
     level: base
     name: "Security deposit"
-    low: 2812.50
-    expected: 10687.50
-    high: 28800
+    lines:
+      - quantity: input.deposit-months
+        unit_price: item.rent-and-nnn
     status: estimate
-    owner_input: true
-    source: "D-25: Space: lease security deposit and guarantee"
-    notes: "1 / 3 / 6 months of rent-and-nnn; startups are often asked for 3 to 6 months."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Months of rent as the owner gave them (none, 1, and 3). No personal guarantee is assumed."
   - id: pre-opening-rent
     category: space
     level: base
     name: "Rent during build-out"
-    low: 2812.50
-    expected: 7125
-    high: 14400
+    lines:
+      - quantity: "input.build-out-months - input.rent-free-months"
+        unit_price: item.rent-and-nnn
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "1 / 2 / 3 months of rent-and-nnn; a rent-free fixturing period would lower it."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Build-out takes 3 / 6 / 12 months and the first 3 are rent-free, so rent is paid for 0 / 3 / 9 months."
   - id: lease-legal-review
     category: space
     level: base
@@ -149,35 +147,32 @@ items:
     category: space
     level: base
     name: "Utility deposits"
-    low: 0
-    expected: 0
-    high: 0
+    low: 300
+    expected: 500
+    high: 1000
     status: estimate
-    owner_input: true
-    source: "D-25: Space: cost categories"
-    notes: "No Knoxville Utilities Board deposit schedule found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Knoxville Utilities Board charges twice the highest month with a $300 minimum, per the owner."
   - id: build-out
     category: space
     level: base
     name: "Build-out (before any landlord allowance)"
-    low: 25500
-    expected: 60000
-    high: 135000
+    lines:
+      - quantity: level.base.sqft
+        unit_price: input.build-out-price-per-sqft
     status: estimate
-    owner_input: true
-    source: "D-25: Space: build-out"
-    notes: "$17 / $40 / $90 per sq ft times 1,500 sq ft. Landlord allowances of $15 to $60 per sq ft were reported and are not subtracted."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per sq ft times 1,500 sq ft. The owner prefers a shell, so the work is minimal. No landlord allowance is subtracted."
   - id: signage
     category: space
     level: base
     name: "Storefront sign"
-    low: 500
-    expected: 2500
-    high: 6000
+    low: 3000
+    expected: 5000
+    high: 10000
     status: estimate
-    owner_input: true
-    source: "D-25: Branding, signage, launch: storefront sign"
-    notes: "Basic sign $500 to $2,500; lit sign $1,500 to $3,000; channel letters $2,500 to $6,000. Low is basic low, expected is basic high, high is channel letters high."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: security-deposit-expansion-1
     category: space
     level: stretch-1
