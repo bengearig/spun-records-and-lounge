@@ -43,6 +43,9 @@ func load(readPath, reportPath string) (*Data, error) {
 	if err := d.validate(); err != nil {
 		return nil, fmt.Errorf("%s: %w", reportPath, err)
 	}
+	if err := d.resolve(); err != nil {
+		return nil, fmt.Errorf("%s: %w", reportPath, err)
+	}
 	return &d, nil
 }
 

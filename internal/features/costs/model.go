@@ -116,5 +116,8 @@ type Item struct {
 	Notes      string `yaml:"notes"`
 	Lines      []Line `yaml:"lines"`
 
+	// Resolved holds the evaluated lines of an item that has Lines.
+	Resolved []ResolvedLine `yaml:"-"`
+
 	ReserveMonths map[string]ReserveMonths `yaml:"reserve_months"`
 }
