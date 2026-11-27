@@ -9,7 +9,7 @@ TODO: Describe list of attachments such as lease drafts, quotes, and licenses.
 This section lists every one-time cost item and monthly operating item in the cost data, with its status and source; items flagged as owner input still need the owner's figures.
 
 ```costs
-items source=true
+items source=true basis=true
 ```
 
 The monthly operating items below size the cash reserve.

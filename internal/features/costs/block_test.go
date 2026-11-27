@@ -1,6 +1,7 @@
 package costs
 
 import (
+	"math/big"
 	"strings"
 	"testing"
 )
@@ -197,5 +198,82 @@ func TestStyles(t *testing.T) {
 	}
 	if c.HeadHTML() != "" || c.Scripts() != "" {
 		t.Fatal("want empty head and scripts")
+	}
+}
+
+func basisCells(t *testing.T, html string) map[string]string {
+	t.Helper()
+	got := map[string]string{}
+	for _, line := range strings.Split(html, "\n") {
+		if !strings.HasPrefix(line, "<tr><td") {
+			continue
+		}
+		cells := strings.Split(strings.TrimSuffix(strings.TrimPrefix(line, "<tr><td"), "</td></tr>"), "</td><td")
+		name := cells[0]
+		got[strings.TrimPrefix(name, ">")] = cells[len(cells)-1]
+	}
+	return got
+}
+
+func TestBlockBasis(t *testing.T) {
+	html := renderBlock(t, inputsFixture, "items basis=true")
+	if !strings.Contains(html, `<th>Status</th><th>Basis</th></tr>`) {
+		t.Fatalf("html = %q, want Basis after Status", html)
+	}
+	want := map[string]string{
+		"Deposit":        "0 / 1 / 3 x $1,458.33 / $1,750 / $2,500",
+		"Build-out rent": "0 / 3 / 9 x $1,458.33 / $1,750 / $2,500",
+		"Counter":        "12 x $100 / $150 / $500",
+		"Mural":          "320 x $20 / $25 / $40",
+		"Seating":        "tables: 9 x $50 / $150 / $300; seats: 24 x $50 / $250 / $400",
+		"Typed":          "",
+	}
+	got := basisCells(t, html)
+	for name, w := range want {
+		if got[name] != ">"+w {
+			t.Errorf("%s basis = %q, want %q", name, got[name], ">"+w)
+		}
+	}
+
+	html = renderBlock(t, inputsFixture, "items source=true basis=true")
+	if !strings.Contains(html, `<th>Status</th><th>Basis</th><th>Source</th></tr>`) {
+		t.Fatalf("html = %q, want Basis before Source", html)
+	}
+}
+
+func TestBlockBasisMonthly(t *testing.T) {
+	d := loadFixture(t)
+	for _, it := range d.Monthly {
+		if it.ID == "rent" {
+			if got, want := basisText(it), "1,000 x $17.50 / $21 / $30 ÷ 12"; got != want {
+				t.Fatalf("basis = %q, want %q", got, want)
+			}
+			return
+		}
+	}
+	t.Fatal("no rent item")
+}
+
+func TestBlockNoBasisByDefault(t *testing.T) {
+	html := renderBlock(t, inputsFixture, "items")
+	if strings.Contains(html, "Basis") {
+		t.Fatalf("html = %q, want no Basis column", html)
+	}
+	html = renderBlock(t, inputsFixture, "items basis=false")
+	if strings.Contains(html, "Basis") {
+		t.Fatalf("html = %q, want no Basis column", html)
+	}
+}
+
+func TestFormatBasisNumbers(t *testing.T) {
+	r := func(s string) *big.Rat { v, _ := new(big.Rat).SetString(s); return v }
+	if got := formatDollars(r("1458.3333333")); got != "$1,458.3333" {
+		t.Errorf("dollars = %q", got)
+	}
+	if got := formatDollars(r("17.5")); got != "$17.50" {
+		t.Errorf("dollars = %q", got)
+	}
+	if got := formatQuantity(r("1234567.125")); got != "1,234,567.125" {
+		t.Errorf("quantity = %q", got)
 	}
 }
