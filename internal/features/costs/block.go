@@ -166,27 +166,29 @@ func buildItems(d *Data, opts map[string]string) (table, error) {
 	return tb, nil
 }
 
+func monthsCell(m ReserveMonths) cell {
+	if m.Low == m.Expected && m.Expected == m.High {
+		return count(m.Low)
+	}
+	return cell{text: fmt.Sprintf("%d / %d / %d", m.Low, m.Expected, m.High), num: true}
+}
+
 func buildReserve(d *Data, _ map[string]string) (table, error) {
 	t, err := d.Totals()
 	if err != nil {
 		return table{}, err
 	}
-	tb := table{head: []cell{head("Item"), head("Level"), numHead("Low"), numHead("Expected"), numHead("High")}}
+	tb := table{head: []cell{head("Item"), head("Level"), numHead("Reserve months"), numHead("Low"), numHead("Expected"), numHead("High")}}
 	for _, it := range d.Monthly {
 		levelName := it.Level
 		if l, _, ok := d.Level(it.Level); ok {
 			levelName = l.Name
 		}
-		tb.rows = append(tb.rows, row(it.Name, append([]cell{txt(levelName)}, rangeCells(itemRange(it))...)...))
-	}
-	var months ReserveMonths
-	if n := len(t.Levels); n > 0 {
-		months = t.Levels[n-1].ReserveMonths
+		tb.rows = append(tb.rows, row(it.Name, append([]cell{txt(levelName), monthsCell(d.ItemReserveMonths(it))}, rangeCells(itemRange(it))...)...))
 	}
 	tb.rows = append(tb.rows,
-		row("Monthly total", append([]cell{txt("")}, rangeCells(t.Monthly)...)...),
-		row("Reserve months", txt(""), count(months.Low), count(months.Expected), count(months.High)),
-		row("Reserve", append([]cell{txt("")}, rangeCells(t.Reserve)...)...),
+		row("Monthly total", append([]cell{txt(""), txt("")}, rangeCells(t.Monthly)...)...),
+		row("Reserve", append([]cell{txt(""), txt("")}, rangeCells(t.Reserve)...)...),
 	)
 	return tb, nil
 }

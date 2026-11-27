@@ -98,19 +98,33 @@ func TestBlockReserve(t *testing.T) {
 	html := renderBlock(t, exampleYAML, "reserve")
 	want := `<table class="costs-table">
 <thead>
-<tr><th>Item</th><th>Level</th><th class="num">Low</th><th class="num">Expected</th><th class="num">High</th></tr>
+<tr><th>Item</th><th>Level</th><th class="num">Reserve months</th><th class="num">Low</th><th class="num">Expected</th><th class="num">High</th></tr>
 </thead>
 <tbody>
-<tr><td>M one</td><td>Base</td><td class="num">$10</td><td class="num">$20</td><td class="num">$30</td></tr>
-<tr><td>M two</td><td>Plus</td><td class="num">$5</td><td class="num">$5</td><td class="num">$5</td></tr>
-<tr><td>Monthly total</td><td></td><td class="num">$15</td><td class="num">$25</td><td class="num">$35</td></tr>
-<tr><td>Reserve months</td><td></td><td class="num">1</td><td class="num">2</td><td class="num">3</td></tr>
-<tr><td>Reserve</td><td></td><td class="num">$15</td><td class="num">$50</td><td class="num">$105</td></tr>
+<tr><td>M one</td><td>Base</td><td class="num">1 / 2 / 3</td><td class="num">$10</td><td class="num">$20</td><td class="num">$30</td></tr>
+<tr><td>M two</td><td>Plus</td><td class="num">1 / 2 / 3</td><td class="num">$5</td><td class="num">$5</td><td class="num">$5</td></tr>
+<tr><td>Monthly total</td><td></td><td></td><td class="num">$15</td><td class="num">$25</td><td class="num">$35</td></tr>
+<tr><td>Reserve</td><td></td><td></td><td class="num">$15</td><td class="num">$50</td><td class="num">$105</td></tr>
 </tbody>
 </table>
 `
 	if !strings.Contains(html, want) {
 		t.Fatalf("html = %q, want containing %q", html, want)
+	}
+	if strings.Contains(html, "<td>Reserve months</td>") {
+		t.Fatalf("html = %q, want no Reserve months row", html)
+	}
+}
+
+func TestBlockReserveItemMonths(t *testing.T) {
+	html := renderBlock(t, exampleYAML+m3Line, "reserve")
+	for _, want := range []string{
+		`<tr><td>M one</td><td>Base</td><td class="num">1 / 2 / 3</td>`,
+		`<tr><td>M three</td><td>Base</td><td class="num">2 / 3 / 3</td>`,
+	} {
+		if !strings.Contains(html, want) {
+			t.Fatalf("html = %q, want containing %q", html, want)
+		}
 	}
 }
 
