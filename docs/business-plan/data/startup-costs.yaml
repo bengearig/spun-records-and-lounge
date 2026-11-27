@@ -80,6 +80,37 @@ categories:
   - id: launch
     name: "Branding and launch"
 
+inputs:
+  - id: base-rent-per-sqft-year
+    name: "Base rent per sq ft per year"
+    value: {low: 15, expected: 18, high: 25}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "No site is chosen; this is the owner's expected range."
+  - id: nnn-per-sqft-year
+    name: "NNN charges per sq ft per year"
+    value: {low: 2.5, expected: 3, high: 5}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: rent-and-nnn-per-sqft-year
+    name: "All-in rent per sq ft per year"
+    value: "input.base-rent-per-sqft-year + input.nnn-per-sqft-year"
+  - id: build-out-price-per-sqft
+    name: "Build-out price per sq ft"
+    value: {low: 10, expected: 15, high: 25}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner prefers a shell, so the build-out is minimal. No landlord allowance is subtracted."
+  - id: build-out-months
+    name: "Months of build-out before opening"
+    value: {low: 3, expected: 6, high: 12}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: rent-free-months
+    name: "Rent-free months during build-out"
+    value: 3
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: deposit-months
+    name: "Security deposit, in months of rent"
+    value: {low: 0, expected: 1, high: 3}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+
 items:
   - id: security-deposit
     category: space
@@ -548,13 +579,13 @@ monthly:
   - id: rent-and-nnn
     level: base
     name: "Rent and NNN charges (1,500 sq ft)"
-    low: 2812.50
-    expected: 3562.50
-    high: 4800
+    lines:
+      - quantity: level.base.sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "1,500 sq ft times $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. All-in rates: Middlebrook Pike $20.00 plus the $2.50 Kingston Pike NNN estimate; North Knoxville Charlie Haun Drive $25 plus $3.50; Clinton Highway $32 plus $6.40."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "All-in rent and NNN per sq ft per year times 1,500 sq ft, divided by 12. No site is chosen."
   - id: insurance
     level: base
     name: "General and liquor liability insurance"
@@ -638,20 +669,20 @@ monthly:
   - id: rent-expansion-1
     level: stretch-1
     name: "Added rent for 500 sq ft"
-    low: 937.50
-    expected: 1187.50
-    high: 1600
+    lines:
+      - quantity: level.stretch-1.added_sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The same all-in rate on the 500 sq ft the level adds, divided by 12."
   - id: rent-expansion-2
     level: stretch-2
     name: "Added rent for another 500 sq ft"
-    low: 937.50
-    expected: 1187.50
-    high: 1600
+    lines:
+      - quantity: level.stretch-2.added_sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The same all-in rate on the 500 sq ft the level adds, divided by 12."
