@@ -144,6 +144,16 @@ inputs:
     name: "Wall mural height in feet"
     value: 8
     source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: albums-per-display-unit
+    name: "Albums per display unit"
+    value: {low: 25, expected: 40, high: 50}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Each unit holds about 50 records; some albums have more than one record."
+  - id: cost-per-album
+    name: "Cost to stock one album"
+    value: {low: 15, expected: 18, high: 25}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "What the shop pays per album, new and used, on average."
 
 items:
   - id: security-deposit
@@ -447,46 +457,42 @@ items:
     category: inventory
     level: base
     name: "Opening record inventory (new and used)"
-    low: 9000
-    expected: 20000
-    high: 35000
+    lines:
+      - quantity: "input.display-units-base * input.albums-per-display-unit"
+        unit_price: input.cost-per-album
     status: estimate
-    owner_input: true
-    source: "D-25: Opening inventory and sourcing, record inventory"
-    notes: "30% / 40% / 50% of $30,000 / $50,000 / $70,000, from whole-store record-shop guides putting inventory at 30 to 50 percent. The vintage-focused band up to $150,000 is not used. The split between new and used records is the owner's choice."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Display units times albums per unit times the shop's cost per album."
   - id: other-merchandise
     category: inventory
     level: base
     name: "Apparel, art, audio gear, and small items"
-    low: 0
-    expected: 0
-    high: 0
+    low: 2000
+    expected: 3000
+    high: 5000
     status: estimate
-    owner_input: true
-    source: "D-25: Opening inventory and sourcing, other merchandise"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: drinks-and-snacks
     category: inventory
     level: base
     name: "Opening drink and snack stock"
-    low: 0
-    expected: 0
-    high: 0
+    low: 2000
+    expected: 3000
+    high: 5000
     status: estimate
-    owner_input: true
-    source: "D-25: Opening inventory and sourcing, drinks and snacks"
-    notes: "No figure found. All drinks are in the base."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: coffee-tea-supplies
     category: inventory
     level: base
     name: "Coffee and tea supplies"
-    low: 0
-    expected: 0
-    high: 0
+    low: 150
+    expected: 250
+    high: 500
     status: estimate
-    owner_input: true
-    source: "D-25: Opening inventory and sourcing, coffee and tea supplies"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: entity-formation
     category: licensing
     level: base
