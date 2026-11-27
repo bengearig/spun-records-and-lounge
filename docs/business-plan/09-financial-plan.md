@@ -118,4 +118,34 @@ goals
 
 These amounts are estimates; see the notice under [](09-financial-plan.md#startup-costs).
 
+### Loans and SBA programs
+
+The owner has not chosen any funding sources. This section records what research reports about each kind of source, without saying that any of them is available to Spun.
+
+> **Research (unverified):** Sources describe banks as the strictest lenders for a startup with no revenue history, asking for a personal credit score around 670, minimums for revenue and time in business, and collateral. A brand-new retail business therefore usually will not qualify for a conventional bank term loan. Online lenders are described as more flexible and as costing more. A bank line of credit may be easier to get.
+>
+> Sources: [Lending Tree: startup business loan](https://www.lendingtree.com/business/how-to-get-a-startup-business-loan/), [NerdWallet: business loan requirements](https://www.nerdwallet.com/business/loans/learn/how-to-qualify-for-small-business-loans)
+>
+> **Verify with:** Lenders directly and the Tennessee Small Business Development Center.
+
+> **Research (unverified):** SBA equity injection requirements are reported as set by the lender, with 10 percent described as standard for riskier deals such as startups. The SBA 7(a) program is described as available to startups. SBA Microloans are reported as up to $50,000 for working capital, inventory, furniture, fixtures, and equipment, made through nonprofit intermediaries. No current Tennessee-specific equity rule or loan limit was found, and some of the sources are lender blogs.
+>
+> Sources: [SBA: microloan program](https://www.sba.gov/partners/lenders/microloan-program), [SBA: list of microlenders](https://sba.gov/partners/lenders/microloan-program/list-lenders), [Kiplinger: SBA loan rules 2026](https://www.kiplinger.com/business/small-business-loans/sba-loan-rules), [SBA7a.loans: Tennessee](https://www.sba7a.loans/guides/tennessee/)
+>
+> **Verify with:** The SBA, a Tennessee SBDC counselor, and a microlender.
+
+### Local lenders and free help
+
+> **Research (unverified):** Pathway Lending, a community development financial institution (CDFI), is reported as offering small-business loans and microloans, including an "865 Opportunity Fund" announced in 2023 for $5,000 to $50,000 capital needs in the Knoxville area. Three Roots Capital and the Knoxville Area Urban League are also reported as local CDFIs. LiftFund and People Incorporated Financial Services appear in the SBA microlender list. These programs may have changed since 2023.
+>
+> Sources: [SCORE Greater Knoxville: business loan options](https://greaterknoxville.score.org/resource/business-loan-options), [Knoxville Chamber: 865 Opportunity Fund (PDF)](https://www.knoxvillechamber.com/wp-content/uploads/2023/01/865OpportunityFund_1sheet_1.19.23.pdf), [SBA: list of microlenders](https://sba.gov/partners/lenders/microloan-program/list-lenders)
+>
+> **Verify with:** Pathway Lending, each lender directly, and the current SBA list.
+
+> **Research (unverified):** The Tennessee Small Business Development Center, SCORE Greater Knoxville, the Knoxville Entrepreneur Center, and the East Tennessee Development District (which has a revolving loan fund) are reported as free or low-cost help. No current Knoxville startup grant was found, and the state says few federal grants go directly to individual businesses.
+>
+> Sources: [Knoxville Chamber: small business](https://www.knoxvillechamber.com/regional-enhancement/small-business/), [SCORE Greater Knoxville: business loan options](https://greaterknoxville.score.org/resource/business-loan-options), [Tennessee ECD: Fund Tennessee (SSBCI)](https://www.tn.gov/ecd/small-business/ssbci.html)
+>
+> **Verify with:** The Knoxville Entrepreneur Center, the Tennessee SBDC Knoxville office, and the East Tennessee Development District.
+
 TODO: Describe sources of capital, terms, and use of funds.
