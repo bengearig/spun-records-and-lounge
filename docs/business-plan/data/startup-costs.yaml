@@ -584,12 +584,11 @@ items:
     level: base
     name: "Logo and brand design"
     low: 0
-    expected: 0
-    high: 0
+    expected: 2500
+    high: 5000
     status: estimate
-    owner_input: true
-    source: "D-25: Branding, signage, launch, logo and brand design"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Low is the owner doing it themselves; expected and high are paid design work."
   - id: website
     category: launch
     level: base
@@ -598,9 +597,8 @@ items:
     expected: 0
     high: 0
     status: estimate
-    owner_input: true
-    source: "D-25: Branding, signage, launch, website"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner builds it themselves, so no cost is counted. Domain and hosting costs are not counted."
   - id: opening-event
     category: launch
     level: base
