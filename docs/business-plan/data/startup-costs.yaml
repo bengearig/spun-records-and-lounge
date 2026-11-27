@@ -353,46 +353,42 @@ items:
     category: equipment
     level: base
     name: "Point-of-sale hardware"
-    low: 49
-    expected: 349
-    high: 349
-    status: estimate
-    owner_input: true
-    source: "D-25: Equipment: point of sale"
-    notes: "Card reader $49, terminal $349. The owner may already own hardware."
+    low: 2000
+    expected: 2000
+    high: 2000
+    status: quote
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's quote."
   - id: playback-system
     category: equipment
     level: base
     name: "In-store playback system"
-    low: 0
-    expected: 0
-    high: 0
+    low: 1300
+    expected: 2500
+    high: 3800
     status: estimate
-    owner_input: true
-    source: "D-25: Equipment: cost categories"
-    notes: "Turntables, amplifier, and speakers; no figure found. The owner may already own some."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: beverage-cooler
     category: equipment
     level: base
     name: "Beverage cooler"
-    low: 600
-    expected: 2000
-    high: 5000
+    low: 900
+    expected: 1800
+    high: 2700
     status: estimate
-    owner_input: true
-    source: "D-25: Equipment: cafe equipment"
-    notes: "Display refrigerator $600 to $2,000; grab-and-go cooler $2,000 to $5,000."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: coffee-equipment
     category: equipment
     level: base
-    name: "Coffee grinder"
-    low: 500
-    expected: 1500
-    high: 2500
-    status: estimate
-    owner_input: true
-    source: "D-25: Equipment: cafe equipment"
-    notes: "Grinder only, $500 to $2,500 reported. Kettle and pour-over set not priced; no price found."
+    name: "Coffee equipment"
+    low: 450
+    expected: 450
+    high: 450
+    status: quote
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "One quote covering all coffee equipment: espresso machine, grinder, and brewers. The owner first entered $350, then changed it to $450."
   - id: water-filtration
     category: equipment
     level: base
@@ -407,14 +403,13 @@ items:
   - id: carbonation-tool
     category: equipment
     level: base
-    name: "Carbonation tool (optional)"
-    low: 0
-    expected: 0
-    high: 0
+    name: "Carbonation tool"
+    low: 150
+    expected: 400
+    high: 1000
     status: estimate
-    owner_input: true
-    source: "D-25: Equipment: cost categories"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "In the opening budget, as the owner decided."
   - id: security-alarm
     category: equipment
     level: base
