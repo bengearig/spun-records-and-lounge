@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 
 	"gopkg.in/yaml.v3"
 )
@@ -63,6 +64,7 @@ func (d *Data) validate() error {
 	}
 
 	levels := map[string]bool{}
+	levelIdx := map[string]int{}
 	for i, l := range d.Levels {
 		who := label("level", "levels", i, l.ID)
 		if !slugPattern.MatchString(l.ID) {
@@ -72,6 +74,7 @@ func (d *Data) validate() error {
 			return fmt.Errorf("%s: duplicate level id", who)
 		}
 		levels[l.ID] = true
+		levelIdx[l.ID] = i
 		if l.Name == "" {
 			return fmt.Errorf("%s: name is required", who)
 		}
@@ -141,6 +144,9 @@ func (d *Data) validate() error {
 			if it.Expected > it.High {
 				return fmt.Errorf("%s: expected must not exceed high", who)
 			}
+			if err := validateItemReserve(who, it, monthly, levelIdx); err != nil {
+				return err
+			}
 		}
 		return nil
 	}
@@ -148,4 +154,38 @@ func (d *Data) validate() error {
 		return err
 	}
 	return check("monthly", d.Monthly, true)
+}
+
+func validateItemReserve(who string, it Item, monthly bool, levelIdx map[string]int) error {
+	if it.ReserveMonths == nil {
+		return nil
+	}
+	if !monthly {
+		return fmt.Errorf("%s: reserve_months is only for monthly items", who)
+	}
+	if len(it.ReserveMonths) == 0 {
+		return fmt.Errorf("%s: reserve_months must not be empty", who)
+	}
+	keys := make([]string, 0, len(it.ReserveMonths))
+	for k := range it.ReserveMonths {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for _, k := range keys {
+		i, ok := levelIdx[k]
+		if !ok {
+			return fmt.Errorf("%s: reserve_months has unknown level %q", who, k)
+		}
+		if i < levelIdx[it.Level] {
+			return fmt.Errorf("%s: reserve_months level %q comes before the item's level %q", who, k, it.Level)
+		}
+		r := it.ReserveMonths[k]
+		if r.Low < 0 || r.Expected < 0 || r.High < 0 {
+			return fmt.Errorf("%s: reserve_months level %q must not be negative", who, k)
+		}
+		if r.Low > r.Expected || r.Expected > r.High {
+			return fmt.Errorf("%s: reserve_months level %q must satisfy low <= expected <= high", who, k)
+		}
+	}
+	return nil
 }
