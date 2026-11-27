@@ -39,10 +39,32 @@ func load(readPath, reportPath string) (*Data, error) {
 		}
 		return nil, fmt.Errorf("%s: %w", reportPath, err)
 	}
+	d.written = readWritten(raw)
 	if err := d.validate(); err != nil {
 		return nil, fmt.Errorf("%s: %w", reportPath, err)
 	}
 	return &d, nil
+}
+
+// readWritten reports which items spelled out any of low, expected, or high.
+func readWritten(raw []byte) [2][]bool {
+	type amounts struct {
+		Low      yaml.Node `yaml:"low"`
+		Expected yaml.Node `yaml:"expected"`
+		High     yaml.Node `yaml:"high"`
+	}
+	var f struct {
+		Items   []amounts `yaml:"items"`
+		Monthly []amounts `yaml:"monthly"`
+	}
+	_ = yaml.Unmarshal(raw, &f)
+	var w [2][]bool
+	for i, list := range [][]amounts{f.Items, f.Monthly} {
+		for _, a := range list {
+			w[i] = append(w[i], a.Low.Kind != 0 || a.Expected.Kind != 0 || a.High.Kind != 0)
+		}
+	}
+	return w
 }
 
 func label(kind, list string, i int, id string) string {
@@ -105,8 +127,26 @@ func (d *Data) validate() error {
 		}
 	}
 
+	inputIDs := map[string]bool{}
+	for i, in := range d.Inputs {
+		who := label("input", "inputs", i, in.ID)
+		if !slugPattern.MatchString(in.ID) {
+			return fmt.Errorf("%s: id must be a slug (lowercase letters, digits, hyphens)", who)
+		}
+		if inputIDs[in.ID] {
+			return fmt.Errorf("%s: duplicate input id", who)
+		}
+		inputIDs[in.ID] = true
+		if in.Name == "" {
+			return fmt.Errorf("%s: name is required", who)
+		}
+		if !in.Value.isSet() {
+			return fmt.Errorf("%s: value is required", who)
+		}
+	}
+
 	ids := map[string]bool{}
-	check := func(list string, items []Item, monthly bool) error {
+	check := func(list string, kind int, items []Item, monthly bool) error {
 		for i, it := range items {
 			who := label("item", list, i, it.ID)
 			if !slugPattern.MatchString(it.ID) {
@@ -127,6 +167,23 @@ func (d *Data) validate() error {
 			case !monthly && !cats[it.Category]:
 				return fmt.Errorf("%s: unknown category %q", who, it.Category)
 			}
+			if it.Lines != nil && kind < len(d.written) && i < len(d.written[kind]) && d.written[kind][i] {
+				return fmt.Errorf("%s: lines and typed amounts cannot be combined", who)
+			}
+			if it.Lines != nil && len(it.Lines) == 0 {
+				return fmt.Errorf("%s: lines must not be empty", who)
+			}
+			for j, ln := range it.Lines {
+				if !ln.Quantity.isSet() {
+					return fmt.Errorf("%s: lines[%d].quantity: is required", who, j)
+				}
+				if !ln.UnitPrice.isSet() {
+					return fmt.Errorf("%s: lines[%d].unit_price: is required", who, j)
+				}
+				if ln.Divisor < 1 {
+					return fmt.Errorf("%s: lines[%d].divisor: must be at least 1", who, j)
+				}
+			}
 			if it.Level == "" {
 				return fmt.Errorf("%s: level is required", who)
 			}
@@ -138,11 +195,13 @@ func (d *Data) validate() error {
 			default:
 				return fmt.Errorf("%s: invalid status %q (want estimate, quote, or paid)", who, it.Status)
 			}
-			if it.Low > it.Expected {
-				return fmt.Errorf("%s: low must not exceed expected", who)
-			}
-			if it.Expected > it.High {
-				return fmt.Errorf("%s: expected must not exceed high", who)
+			if it.Lines == nil {
+				if it.Low > it.Expected {
+					return fmt.Errorf("%s: low must not exceed expected", who)
+				}
+				if it.Expected > it.High {
+					return fmt.Errorf("%s: expected must not exceed high", who)
+				}
 			}
 			if err := validateItemReserve(who, it, monthly, levelIdx); err != nil {
 				return err
@@ -150,10 +209,16 @@ func (d *Data) validate() error {
 		}
 		return nil
 	}
-	if err := check("items", d.Items, false); err != nil {
+	if err := check("items", 0, d.Items, false); err != nil {
 		return err
 	}
-	return check("monthly", d.Monthly, true)
+	if err := check("monthly", 1, d.Monthly, true); err != nil {
+		return err
+	}
+	if err := d.validateRefs(inputIDs, ids, levelIdx); err != nil {
+		return err
+	}
+	return d.validateCycles()
 }
 
 func validateItemReserve(who string, it Item, monthly bool, levelIdx map[string]int) error {

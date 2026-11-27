@@ -143,6 +143,8 @@ func (v Value) Eval(m Member, env Env) (*big.Rat, error) {
 	return e.eval(m, env)
 }
 
+func (v Value) isSet() bool { return v.members[0] != nil }
+
 // Refs lists every reference in the value, in order of appearance.
 func (v Value) Refs() []Ref {
 	var refs []Ref
