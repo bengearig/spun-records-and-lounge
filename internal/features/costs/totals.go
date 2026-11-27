@@ -106,6 +106,7 @@ func (d *Data) Totals() (Totals, error) {
 	}
 
 	ownMonthly := make([]Range, len(d.Levels))
+	plainMonthly := make([]Range, len(d.Levels))
 	for _, it := range d.Monthly {
 		i, ok := levelIdx[it.Level]
 		if !ok {
@@ -115,9 +116,14 @@ func (d *Data) Totals() (Totals, error) {
 		if ownMonthly[i], err = ownMonthly[i].Add(itemRange(it)); err != nil {
 			return Totals{}, fmt.Errorf("totaling level %q monthly: %w", it.Level, err)
 		}
+		if it.ReserveMonths == nil {
+			if plainMonthly[i], err = plainMonthly[i].Add(itemRange(it)); err != nil {
+				return Totals{}, fmt.Errorf("totaling level %q monthly: %w", it.Level, err)
+			}
+		}
 	}
 
-	var runItems, runMonthly, prevGoal Range
+	var runItems, runMonthly, runPlain, prevGoal Range
 	var runMonths ReserveMonths
 	for i, l := range d.Levels {
 		lt := &t.Levels[i]
@@ -128,14 +134,29 @@ func (d *Data) Totals() (Totals, error) {
 		if runMonthly, err = runMonthly.Add(ownMonthly[i]); err != nil {
 			return Totals{}, fmt.Errorf("totaling level %q: %w", l.ID, err)
 		}
+		if runPlain, err = runPlain.Add(plainMonthly[i]); err != nil {
+			return Totals{}, fmt.Errorf("totaling level %q: %w", l.ID, err)
+		}
 		runMonths.Low += l.ReserveMonths.Low
 		runMonths.Expected += l.ReserveMonths.Expected
 		runMonths.High += l.ReserveMonths.High
 
 		lt.Monthly = runMonthly
 		lt.ReserveMonths = runMonths
-		if lt.Reserve, err = runMonthly.MulMonths(runMonths); err != nil {
+		if lt.Reserve, err = runPlain.MulMonths(runMonths); err != nil {
 			return Totals{}, fmt.Errorf("totaling level %q reserve: %w", l.ID, err)
+		}
+		for _, it := range d.Monthly {
+			if it.ReserveMonths == nil || levelIdx[it.Level] > i {
+				continue
+			}
+			var own Range
+			if own, err = itemRange(it).MulMonths(d.itemMonthsThrough(it, i)); err != nil {
+				return Totals{}, fmt.Errorf("totaling level %q reserve: %w", l.ID, err)
+			}
+			if lt.Reserve, err = lt.Reserve.Add(own); err != nil {
+				return Totals{}, fmt.Errorf("totaling level %q reserve: %w", l.ID, err)
+			}
 		}
 		if lt.Goal, err = runItems.Add(lt.Reserve); err != nil {
 			return Totals{}, fmt.Errorf("totaling level %q goal: %w", l.ID, err)
@@ -151,6 +172,26 @@ func (d *Data) Totals() (Totals, error) {
 		t.Monthly, t.Reserve, t.Total = last.Monthly, last.Reserve, last.Goal
 	}
 	return t, nil
+}
+
+// itemMonthsThrough is an item's running reserve months through level index n.
+func (d *Data) itemMonthsThrough(it Item, n int) ReserveMonths {
+	var run ReserveMonths
+	for i := 0; i <= n && i < len(d.Levels); i++ {
+		m := d.Levels[i].ReserveMonths
+		if it.ReserveMonths != nil {
+			m = it.ReserveMonths[d.Levels[i].ID]
+		}
+		run.Low += m.Low
+		run.Expected += m.Expected
+		run.High += m.High
+	}
+	return run
+}
+
+// ItemReserveMonths returns an item's running reserve months through the last level.
+func (d *Data) ItemReserveMonths(it Item) ReserveMonths {
+	return d.itemMonthsThrough(it, len(d.Levels)-1)
 }
 
 // Category returns the category with the given id.

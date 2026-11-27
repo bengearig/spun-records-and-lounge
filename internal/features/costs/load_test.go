@@ -1,6 +1,7 @@
 package costs
 
 import (
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -33,7 +34,7 @@ func TestLoad(t *testing.T) {
 		{ID: "b1", Name: "B one", Category: "b", Level: "base", Low: 100050, Expected: 150000, High: 200000, Status: StatusEstimate},
 	}
 	for i, w := range wantItems {
-		if d.Items[i] != w {
+		if !reflect.DeepEqual(d.Items[i], w) {
 			t.Errorf("item %d = %+v; want %+v", i, d.Items[i], w)
 		}
 	}
@@ -42,7 +43,7 @@ func TestLoad(t *testing.T) {
 		{ID: "m2", Name: "M two", Level: "plus", Low: 500, Expected: 500, High: 500, Status: StatusEstimate},
 	}
 	for i, w := range wantMonthly {
-		if d.Monthly[i] != w {
+		if !reflect.DeepEqual(d.Monthly[i], w) {
 			t.Errorf("monthly %d = %+v; want %+v", i, d.Monthly[i], w)
 		}
 	}

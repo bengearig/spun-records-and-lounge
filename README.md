@@ -179,6 +179,15 @@ monthly:                    # monthly operating items, used only to size the res
     expected: 3000
     high: 4500
     status: estimate
+  - id: owner-pay           # an item may carry its own reserve schedule instead of the level one
+    level: base
+    name: Owner pay
+    low: 7000
+    expected: 7000
+    high: 7000
+    status: quote
+    reserve_months:         # months THIS item adds per level id; a level left out adds 0
+      base: {low: 1, expected: 1, high: 1}   # keys must be level ids, none before the item's own level
 ```
 
 | Field                | Meaning                                                                                              |
@@ -186,7 +195,7 @@ monthly:                    # monthly operating items, used only to size the res
 | `level`              | Required on every item and monthly item. An item belongs to exactly one level.                       |
 | `status`             | `estimate`, `quote`, or `paid`.                                                                      |
 | `owner_input`        | `true` when the owner still has to supply the real amount. Defaults to `false`.                      |
-| `reserve_months`     | On a level: the months of reserve that level adds, as `low`, `expected`, and `high` whole months.    |
+| `reserve_months`     | On a level: the months of reserve that level adds, as `low`, `expected`, and `high` whole months. On a monthly item: a map from level id to the months that level adds for the item, replacing the level schedule for that item. |
 | `low`, `expected`, `high` | The range for an item, with `low <= expected <= high`. For a monthly item, the range is per month. |
 
 #### Money
@@ -207,7 +216,8 @@ level has an `Adds` figure and a cumulative `Goal`:
 | `Goal`   | The cumulative amount to raise to reach the level: all items through the level, plus its reserve. |
 
 The reserve at a level is the running total of reserve months through that level, times the running monthly total of
-every monthly item at that level or earlier. Because amounts and months are never negative, a goal never decreases from
+every monthly item at that level or earlier that follows the level schedule, plus, for each monthly item with its own
+`reserve_months`, the item's amount times that item's own running months through the level. Because amounts and months are never negative, a goal never decreases from
 one level to the next.
 
 #### Totals
@@ -251,7 +261,7 @@ items category=space level=base source=true
 | ------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `categories` | Category, Low, Expected, High                 | One per category, then `Startup subtotal`, `Cash reserve`, and `Total to raise`.                       |
 | `items`      | Item, Low, Expected, High, Status             | Items in category order. Options: `category=<id>`, `level=<id>`, and `source=true` to add a Source column. |
-| `reserve`    | Item, Level, Low, Expected, High              | One per monthly item (per month), then `Monthly total`, `Reserve months`, and `Reserve`.               |
+| `reserve`    | Item, Level, Reserve months, Low, Expected, High | One per monthly item (amounts per month, with the item's total reserve months), then `Monthly total` and `Reserve`. |
 | `goals`      | Level, Low, Expected, High                    | One per level, showing its cumulative goal.                                                            |
 | `adds`       | Level, Low, Expected, High                    | One per level, showing what it adds.                                                                   |
 | `level`      | Item, Low, Expected, High, Status             | The items of one level, then `Items subtotal`, `Added reserve`, `Adds`, and `Goal`. Requires `id=<level id>`. |

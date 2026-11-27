@@ -50,4 +50,6 @@ type Item struct {
 	OwnerInput bool   `yaml:"owner_input"`
 	Source     string `yaml:"source"`
 	Notes      string `yaml:"notes"`
+
+	ReserveMonths map[string]ReserveMonths `yaml:"reserve_months"`
 }
