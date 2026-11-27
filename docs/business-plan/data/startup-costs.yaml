@@ -110,6 +110,40 @@ inputs:
     name: "Security deposit, in months of rent"
     value: {low: 0, expected: 1, high: 3}
     source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: display-unit-price
+    name: "Price per record display unit"
+    value: {low: 100, expected: 150, high: 300}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "New, used, or built; the owner's range per unit."
+  - id: display-units-base
+    name: "Record display units at the base"
+    value: 26
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Each unit holds about 50 records; some albums have more than one record."
+  - id: display-units-stretch-1
+    name: "Record display units added at stretch 1"
+    value: 8
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: display-units-stretch-2
+    name: "Record display units added at stretch 2"
+    value: 9
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: table-price
+    name: "Price per lounge table"
+    value: {low: 50, expected: 150, high: 300}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: seat-price
+    name: "Price per lounge seat"
+    value: {low: 50, expected: 250, high: 400}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: mural-length-ft
+    name: "Wall mural length in feet"
+    value: {low: 40, expected: 45, high: 50}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: mural-height-ft
+    name: "Wall mural height in feet"
+    value: 8
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
 
 items:
   - id: security-deposit
@@ -217,101 +251,104 @@ items:
     category: fixtures
     level: base
     name: "Record display units"
-    low: 300
-    expected: 7000
-    high: 19200
+    lines:
+      - quantity: input.display-units-base
+        unit_price: input.display-unit-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: record display"
-    notes: "6 / 10 / 16 units times $50 / $700 / $1,200 (dump bin under $50, gondola shelving up to about $700, floor unit about $1,200)."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per unit times the base unit count."
   - id: lounge-furniture
     category: fixtures
     level: base
     name: "Lounge seating and tables"
-    low: 660
-    expected: 4800
-    high: 14000
+    lines:
+      - label: tables
+        quantity: 9
+        unit_price: input.table-price
+      - label: seats
+        quantity: 24
+        unit_price: input.seat-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: furniture"
-    notes: "12 / 24 / 40 seats times $55 / $200 / $350 per seat. The vendor guides cover quick-service and fine-dining restaurants, not lounges."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Nine tables and 24 seats, from the owner's seating rule (a third of the floor at about 21 sq ft per seat)."
   - id: checkout-counter
     category: fixtures
     level: base
     name: "Checkout counter"
-    low: 0
-    expected: 0
-    high: 0
+    lines:
+      - quantity: 12
+        unit_price: {low: 100, expected: 150, high: 500}
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: cost categories"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "A 12-foot counter at the owner's price per linear foot."
   - id: lighting-and-decor
     category: fixtures
     level: base
     name: "Lighting and neon decor"
-    low: 0
-    expected: 0
-    high: 0
+    lines:
+      - quantity: {low: 25, expected: 30, high: 35}
+        unit_price: {low: 100, expected: 150, high: 300}
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: cost categories"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's fixture counts and price per fixture."
   - id: record-display-expansion-1
     category: fixtures
     level: stretch-1
     name: "Added record display units"
-    low: 100
-    expected: 2100
-    high: 6000
+    lines:
+      - quantity: input.display-units-stretch-1
+        unit_price: input.display-unit-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: record display"
-    notes: "2 / 3 / 5 units at the same unit prices as the base."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per unit times the units the level adds."
   - id: lounge-furniture-expansion-1
     category: fixtures
     level: stretch-1
     name: "Added lounge seating and tables"
-    low: 220
-    expected: 1600
-    high: 4550
+    lines:
+      - label: tables
+        quantity: 3
+        unit_price: input.table-price
+      - label: seats
+        quantity: 8
+        unit_price: input.seat-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: furniture"
-    notes: "4 / 8 / 13 seats at the same per-seat prices as the base."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Three tables and eight seats added at the level."
   - id: record-display-expansion-2
     category: fixtures
     level: stretch-2
     name: "Added record display units"
-    low: 100
-    expected: 2100
-    high: 6000
+    lines:
+      - quantity: input.display-units-stretch-2
+        unit_price: input.display-unit-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: record display"
-    notes: "Same as expansion 1: 2 / 3 / 5 units at the base unit prices."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per unit times the units the level adds."
   - id: lounge-furniture-expansion-2
     category: fixtures
     level: stretch-2
     name: "Added lounge seating and tables"
-    low: 220
-    expected: 1600
-    high: 4550
+    lines:
+      - label: tables
+        quantity: 3
+        unit_price: input.table-price
+      - label: seats
+        quantity: 8
+        unit_price: input.seat-price
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: furniture"
-    notes: "Same as expansion 1: 4 / 8 / 13 seats at the base per-seat prices."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Three tables and eight seats added at the level."
   - id: wall-mural
     category: fixtures
     level: stretch-3
     name: "Wall mural"
-    low: 0
-    expected: 0
-    high: 0
+    lines:
+      - quantity: "input.mural-length-ft * input.mural-height-ft"
+        unit_price: {low: 20, expected: 25, high: 40}
     status: estimate
-    owner_input: true
-    source: "D-25: Fixtures and furniture: cost categories"
-    notes: "No figure found; owner input needed."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's mural length times 8 ft tall, at the owner's price per sq ft."
   - id: pos-hardware
     category: equipment
     level: base
