@@ -80,29 +80,58 @@ categories:
   - id: launch
     name: "Branding and launch"
 
+inputs:
+  - id: base-rent-per-sqft-year
+    name: "Base rent per sq ft per year"
+    value: {low: 15, expected: 18, high: 25}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "No site is chosen; this is the owner's expected range."
+  - id: nnn-per-sqft-year
+    name: "NNN charges per sq ft per year"
+    value: {low: 2.5, expected: 3, high: 5}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: rent-and-nnn-per-sqft-year
+    name: "All-in rent per sq ft per year"
+    value: "input.base-rent-per-sqft-year + input.nnn-per-sqft-year"
+  - id: build-out-price-per-sqft
+    name: "Build-out price per sq ft"
+    value: {low: 10, expected: 15, high: 25}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner prefers a shell, so the build-out is minimal. No landlord allowance is subtracted."
+  - id: build-out-months
+    name: "Months of build-out before opening"
+    value: {low: 3, expected: 6, high: 12}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: rent-free-months
+    name: "Rent-free months during build-out"
+    value: 3
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+  - id: deposit-months
+    name: "Security deposit, in months of rent"
+    value: {low: 0, expected: 1, high: 3}
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+
 items:
   - id: security-deposit
     category: space
     level: base
     name: "Security deposit"
-    low: 2812.50
-    expected: 10687.50
-    high: 28800
+    lines:
+      - quantity: input.deposit-months
+        unit_price: item.rent-and-nnn
     status: estimate
-    owner_input: true
-    source: "D-25: Space: lease security deposit and guarantee"
-    notes: "1 / 3 / 6 months of rent-and-nnn; startups are often asked for 3 to 6 months."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Months of rent as the owner gave them (none, 1, and 3). No personal guarantee is assumed."
   - id: pre-opening-rent
     category: space
     level: base
     name: "Rent during build-out"
-    low: 2812.50
-    expected: 7125
-    high: 14400
+    lines:
+      - quantity: "input.build-out-months - input.rent-free-months"
+        unit_price: item.rent-and-nnn
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "1 / 2 / 3 months of rent-and-nnn; a rent-free fixturing period would lower it."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Build-out takes 3 / 6 / 12 months and the first 3 are rent-free, so rent is paid for 0 / 3 / 9 months."
   - id: lease-legal-review
     category: space
     level: base
@@ -118,79 +147,72 @@ items:
     category: space
     level: base
     name: "Utility deposits"
-    low: 0
-    expected: 0
-    high: 0
+    low: 300
+    expected: 500
+    high: 1000
     status: estimate
-    owner_input: true
-    source: "D-25: Space: cost categories"
-    notes: "No Knoxville Utilities Board deposit schedule found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Knoxville Utilities Board charges twice the highest month with a $300 minimum, per the owner."
   - id: build-out
     category: space
     level: base
     name: "Build-out (before any landlord allowance)"
-    low: 25500
-    expected: 60000
-    high: 135000
+    lines:
+      - quantity: level.base.sqft
+        unit_price: input.build-out-price-per-sqft
     status: estimate
-    owner_input: true
-    source: "D-25: Space: build-out"
-    notes: "$17 / $40 / $90 per sq ft times 1,500 sq ft. Landlord allowances of $15 to $60 per sq ft were reported and are not subtracted."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per sq ft times 1,500 sq ft. The owner prefers a shell, so the work is minimal. No landlord allowance is subtracted."
   - id: signage
     category: space
     level: base
     name: "Storefront sign"
-    low: 500
-    expected: 2500
-    high: 6000
+    low: 3000
+    expected: 5000
+    high: 10000
     status: estimate
-    owner_input: true
-    source: "D-25: Branding, signage, launch: storefront sign"
-    notes: "Basic sign $500 to $2,500; lit sign $1,500 to $3,000; channel letters $2,500 to $6,000. Low is basic low, expected is basic high, high is channel letters high."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's range."
   - id: security-deposit-expansion-1
     category: space
     level: stretch-1
     name: "Added security deposit (2,000 sq ft)"
-    low: 937.50
-    expected: 3562.50
-    high: 9600
+    lines:
+      - quantity: input.deposit-months
+        unit_price: item.rent-expansion-1
     status: estimate
-    owner_input: true
-    source: "D-25: Space: lease security deposit and guarantee"
-    notes: "1 / 3 / 6 months of rent-expansion-1."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Months of rent on the added space."
   - id: build-out-expansion-1
     category: space
     level: stretch-1
     name: "Build-out of added 500 sq ft"
-    low: 8500
-    expected: 20000
-    high: 45000
+    lines:
+      - quantity: level.stretch-1.added_sqft
+        unit_price: input.build-out-price-per-sqft
     status: estimate
-    owner_input: true
-    source: "D-25: Space: build-out"
-    notes: "$17 / $40 / $90 per sq ft times 500 sq ft."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per sq ft times the 500 sq ft the level adds."
   - id: security-deposit-expansion-2
     category: space
     level: stretch-2
     name: "Added security deposit (2,500 sq ft)"
-    low: 937.50
-    expected: 3562.50
-    high: 9600
+    lines:
+      - quantity: input.deposit-months
+        unit_price: item.rent-expansion-2
     status: estimate
-    owner_input: true
-    source: "D-25: Space: lease security deposit and guarantee"
-    notes: "1 / 3 / 6 months of rent-expansion-2."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Months of rent on the added space."
   - id: build-out-expansion-2
     category: space
     level: stretch-2
     name: "Build-out of added 500 sq ft"
-    low: 8500
-    expected: 20000
-    high: 45000
+    lines:
+      - quantity: level.stretch-2.added_sqft
+        unit_price: input.build-out-price-per-sqft
     status: estimate
-    owner_input: true
-    source: "D-25: Space: build-out"
-    notes: "$17 / $40 / $90 per sq ft times 500 sq ft."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "Owner's price per sq ft times the 500 sq ft the level adds."
   - id: record-display
     category: fixtures
     level: base
@@ -548,13 +570,13 @@ monthly:
   - id: rent-and-nnn
     level: base
     name: "Rent and NNN charges (1,500 sq ft)"
-    low: 2812.50
-    expected: 3562.50
-    high: 4800
+    lines:
+      - quantity: level.base.sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "1,500 sq ft times $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. All-in rates: Middlebrook Pike $20.00 plus the $2.50 Kingston Pike NNN estimate; North Knoxville Charlie Haun Drive $25 plus $3.50; Clinton Highway $32 plus $6.40."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "All-in rent and NNN per sq ft per year times 1,500 sq ft, divided by 12. No site is chosen."
   - id: insurance
     level: base
     name: "General and liquor liability insurance"
@@ -638,20 +660,20 @@ monthly:
   - id: rent-expansion-1
     level: stretch-1
     name: "Added rent for 500 sq ft"
-    low: 937.50
-    expected: 1187.50
-    high: 1600
+    lines:
+      - quantity: level.stretch-1.added_sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The same all-in rate on the 500 sq ft the level adds, divided by 12."
   - id: rent-expansion-2
     level: stretch-2
     name: "Added rent for another 500 sq ft"
-    low: 937.50
-    expected: 1187.50
-    high: 1600
+    lines:
+      - quantity: level.stretch-2.added_sqft
+        unit_price: input.rent-and-nnn-per-sqft-year
+        divisor: 12
     status: estimate
-    owner_input: true
-    source: "D-25: Space: rent asking prices"
-    notes: "500 sq ft times the same all-in rates of $22.50 / $28.50 / $38.40 per sq ft per year, divided by 12. Rates are asking rents, not leases. Listings: Middlebrook Pike, North Knoxville Charlie Haun Drive, Clinton Highway."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The same all-in rate on the 500 sq ft the level adds, divided by 12."
