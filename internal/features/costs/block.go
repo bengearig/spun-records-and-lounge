@@ -3,6 +3,7 @@ package costs
 import (
 	"bytes"
 	"fmt"
+	"math/big"
 	"slices"
 	"strconv"
 	"strings"
@@ -93,7 +94,7 @@ type tableKind struct {
 // tableKinds is the one place table kinds are registered.
 var tableKinds = map[string]tableKind{
 	"categories": {build: buildCategories},
-	"items":      {options: []string{"category", "level", "source"}, build: buildItems},
+	"items":      {options: []string{"category", "level", "source", "basis"}, build: buildItems},
 	"reserve":    {build: buildReserve},
 	"goals":      {build: buildGoals},
 	"adds":       {build: buildAdds},
@@ -130,17 +131,18 @@ func buildItems(d *Data, opts map[string]string) (table, error) {
 			return table{}, fmt.Errorf("unknown level %q", levelID)
 		}
 	}
-	showSource := false
-	if v, ok := opts["source"]; ok {
-		switch v {
-		case "true":
-			showSource = true
-		case "false":
-		default:
-			return table{}, fmt.Errorf("source must be true or false")
-		}
+	showSource, err := boolOption(opts, "source")
+	if err != nil {
+		return table{}, err
+	}
+	showBasis, err := boolOption(opts, "basis")
+	if err != nil {
+		return table{}, err
 	}
 	tb := table{head: []cell{head("Item"), numHead("Low"), numHead("Expected"), numHead("High"), head("Status")}}
+	if showBasis {
+		tb.head = append(tb.head, head("Basis"))
+	}
 	if showSource {
 		tb.head = append(tb.head, head("Source"))
 	}
@@ -157,6 +159,9 @@ func buildItems(d *Data, opts map[string]string) (table, error) {
 				status += " (owner input needed)"
 			}
 			r := append(row(it.Name, rangeCells(itemRange(it))...), txt(status))
+			if showBasis {
+				r = append(r, txt(basisText(it)))
+			}
 			if showSource {
 				r = append(r, txt(it.Source))
 			}
@@ -164,6 +169,77 @@ func buildItems(d *Data, opts map[string]string) (table, error) {
 		}
 	}
 	return tb, nil
+}
+
+func boolOption(opts map[string]string, key string) (bool, error) {
+	switch opts[key] {
+	case "":
+		if _, ok := opts[key]; ok {
+			return false, fmt.Errorf("%s must be true or false", key)
+		}
+		return false, nil
+	case "true":
+		return true, nil
+	case "false":
+		return false, nil
+	}
+	return false, fmt.Errorf("%s must be true or false", key)
+}
+
+// basisText describes how an item's amount is built from its lines.
+func basisText(it Item) string {
+	parts := make([]string, 0, len(it.Resolved))
+	for _, ln := range it.Resolved {
+		s := ""
+		if ln.Label != "" {
+			s = ln.Label + ": "
+		}
+		s += joinMembers(ln.Quantity, formatQuantity) + " x " + joinMembers(ln.UnitPrice, formatDollars)
+		if ln.Divisor > 1 {
+			s += " ÷ " + strconv.Itoa(ln.Divisor)
+		}
+		parts = append(parts, s)
+	}
+	return strings.Join(parts, "; ")
+}
+
+func joinMembers(v [memberCount]*big.Rat, format func(*big.Rat) string) string {
+	if v[Low].Cmp(v[Expected]) == 0 && v[Expected].Cmp(v[High]) == 0 {
+		return format(v[Low])
+	}
+	return format(v[Low]) + " / " + format(v[Expected]) + " / " + format(v[High])
+}
+
+// formatQuantity shows up to four decimals, trailing zeros removed.
+func formatQuantity(r *big.Rat) string {
+	whole, frac, _ := strings.Cut(r.FloatString(4), ".")
+	frac = strings.TrimRight(frac, "0")
+	whole = groupThousands(whole)
+	if frac == "" {
+		return whole
+	}
+	return whole + "." + frac
+}
+
+// formatDollars shows no decimals when whole, else two to four.
+func formatDollars(r *big.Rat) string {
+	whole, frac, _ := strings.Cut(r.FloatString(4), ".")
+	frac = strings.TrimRight(frac, "0")
+	if frac == "" {
+		return "$" + groupThousands(whole)
+	}
+	return "$" + groupThousands(whole) + "." + frac + strings.Repeat("0", max(0, 2-len(frac)))
+}
+
+func groupThousands(digits string) string {
+	var b strings.Builder
+	for i, c := range digits {
+		if i > 0 && (len(digits)-i)%3 == 0 {
+			b.WriteByte(',')
+		}
+		b.WriteRune(c)
+	}
+	return b.String()
 }
 
 func monthsCell(m ReserveMonths) cell {

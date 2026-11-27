@@ -151,11 +151,20 @@ levels:                     # ordered; the first is the base; at least one
   - id: base                # slug
     name: "Base: 1,500 sq ft"
     description: ""         # optional free text
-    sqft: 1500              # optional positive whole number, documentation only, never used in arithmetic
+    sqft: 1500              # optional positive whole number, used by `level.<id>.sqft` and `level.<id>.added_sqft` in expressions
     reserve_months:         # months of reserve this level ADDS; optional, default 0/0/0
       low: 3
       expected: 3
       high: 6
+inputs:                     # optional; shared named values that lines refer to
+  - id: rent-per-sqft-year  # slug, unique among inputs
+    name: All-in rent per sq ft per year
+    value: {low: 17.50, expected: 21, high: 30}   # a value, see Values and expressions
+    source: ""              # optional free text
+    notes: ""               # optional free text
+  - id: build-months
+    name: Build-out months
+    value: 6
 categories:                 # ordered; order drives table order; at least one
   - id: space               # slug
     name: Space
@@ -188,6 +197,29 @@ monthly:                    # monthly operating items, used only to size the res
     status: quote
     reserve_months:         # months THIS item adds per level id; a level left out adds 0
       base: {low: 1, expected: 1, high: 1}   # keys must be level ids, none before the item's own level
+  - id: rent-and-nnn        # an item may derive its amount from lines instead of low / expected / high
+    level: base
+    name: Rent and NNN
+    status: estimate
+    lines:
+      - label: rent         # optional text shown in the Basis column
+        quantity: level.base.sqft
+        unit_price: input.rent-per-sqft-year
+        divisor: 12         # optional whole number >= 1, default 1
+```
+
+A startup item can carry `lines` the same way:
+
+```yaml
+items:
+  - id: seating
+    category: space
+    level: base
+    name: Seating
+    status: estimate
+    lines:
+      - {label: tables, quantity: 9, unit_price: {low: 50, expected: 150, high: 300}}
+      - {label: seats, quantity: 24, unit_price: "input.seat-price"}
 ```
 
 | Field                | Meaning                                                                                              |
@@ -197,6 +229,34 @@ monthly:                    # monthly operating items, used only to size the res
 | `owner_input`        | `true` when the owner still has to supply the real amount. Defaults to `false`.                      |
 | `reserve_months`     | On a level: the months of reserve that level adds, as `low`, `expected`, and `high` whole months. On a monthly item: a map from level id to the months that level adds for the item, replacing the level schedule for that item. |
 | `low`, `expected`, `high` | The range for an item, with `low <= expected <= high`. For a monthly item, the range is per month. |
+
+#### Values and expressions
+
+An item's `lines` give its amount: each line is a quantity times a unit price, divided by an optional `divisor`. An item has
+either `lines` or typed `low`, `expected`, and `high`, never both, and `lines` must not be empty. The `quantity` and
+`unit_price` of a line, and the `value` of an input, are each one of:
+
+- a plain non-negative number, the same for low, expected, and high: `26`, `17.5`;
+- a map with all three of `low`, `expected`, and `high`: `{low: 25, expected: 30, high: 35}`;
+- a string expression, evaluated once each for low, expected, and high, with every reference taking that member's value.
+
+Expressions use numbers, parentheses, and the operators `+`, `-`, `*`, and `/`, with the usual precedence. There is no
+unary minus and there are no functions. A reference is one of:
+
+| Reference                | Value                                                                                        |
+| ------------------------ | -------------------------------------------------------------------------------------------- |
+| `input.<id>`             | The input's value.                                                                           |
+| `item.<id>`              | The resolved amount of that startup or monthly item, in dollars.                             |
+| `level.<id>.sqft`        | The level's `sqft`; an error if the level has none.                                          |
+| `level.<id>.added_sqft`  | The level's `sqft` minus the previous level's (for the first level, its own); an error if either is missing or the result is negative. |
+
+Ids contain hyphens, so write subtraction with a space on both sides: `input.build-months - input.free-months`. A hyphen
+without spaces is read as part of an id, and any other spacing for subtraction is a parse error.
+
+Arithmetic is exact, not floating point. Nothing is rounded until a line amount is formed: each line is rounded half up to
+the cent, and an item's amount is the sum of its line amounts. A subtraction that gives a negative number and a division
+by zero are errors, and so is a reference cycle among items and inputs. The derived amounts must still satisfy
+`low <= expected <= high`.
 
 #### Money
 
@@ -260,7 +320,7 @@ items category=space level=base source=true
 | Kind         | Columns                                       | Rows                                                                                                   |
 | ------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `categories` | Category, Low, Expected, High                 | One per category, then `Startup subtotal`, `Cash reserve`, and `Total to raise`.                       |
-| `items`      | Item, Low, Expected, High, Status             | Items in category order. Options: `category=<id>`, `level=<id>`, and `source=true` to add a Source column. |
+| `items`      | Item, Low, Expected, High, Status             | Items in category order. Options: `category=<id>`, `level=<id>`, `source=true` to add a Source column, and `basis=true` to add a Basis column (after Status, before Source) listing each line as `[label: ]quantity x unit price[ ÷ divisor]`. |
 | `reserve`    | Item, Level, Reserve months, Low, Expected, High | One per monthly item (amounts per month, with the item's total reserve months), then `Monthly total` and `Reserve`. |
 | `goals`      | Level, Low, Expected, High                    | One per level, showing its cumulative goal.                                                            |
 | `adds`       | Level, Low, Expected, High                    | One per level, showing what it adds.                                                                   |
@@ -277,7 +337,9 @@ list and index when the id is missing. Examples:
 - no levels, categories, or items; a non-slug or duplicate id (items and monthly items share one namespace);
 - an item with a missing or unknown `category` or `level`, or a monthly item with a `category`;
 - a missing `name`, an invalid `status`, `low <= expected <= high` violated, a bad money value;
-- a level `sqft` that is not positive, or `reserve_months` that are negative or out of order.
+- a level `sqft` that is not positive, or `reserve_months` that are negative or out of order;
+- an input with a non-slug or duplicate id or a missing `name` or `value`; an item with `lines` and typed amounts together, an empty `lines` list, or a `divisor` below 1;
+- an expression that does not parse, a reference to an unknown input, item, or level, `level.<id>.sqft` on a level without `sqft`, or a reference cycle.
 
 A bad directive stops the render with the document line and the directive text, for an unknown path, id, or suffix. A
 bad `costs` block reports its line for an unknown kind or option, an unknown id, or a missing `id` on a `level` table.
