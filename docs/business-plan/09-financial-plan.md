@@ -148,4 +148,39 @@ The owner has not chosen any funding sources. This section records what research
 >
 > **Verify with:** The Knoxville Entrepreneur Center, the Tennessee SBDC Knoxville office, and the East Tennessee Development District.
 
-TODO: Describe sources of capital, terms, and use of funds.
+### Crowdfunding and investors
+
+> **Research (unverified):** Regulation Crowdfunding lets a company raise up to $5,000,000 in 12 months through a funding portal, in exchange for securities. It sets investor limits for non-accredited investors and a one-year resale restriction, and it involves securities-law obligations.
+>
+> Sources: [SEC: Regulation Crowdfunding](https://www.sec.gov/smallbusiness/exemptofferings/regcrowdfunding)
+>
+> **Verify with:** The SEC and an attorney.
+
+> **Research (unverified):** Rewards-based platforms (Kickstarter, Indiegogo) and Kiva's zero-interest loans were not covered by the research. The description here is general knowledge and is unverified: on a rewards-based platform, backers pre-buy rewards and no ownership is given up; Kiva is a nonprofit that makes zero-interest loans through local partners, with eligibility requirements.
+>
+> Sources: none (general knowledge)
+>
+> **Verify with:** Each platform's own terms.
+
+The owner has said ownership may change as startup capital is raised (see [](08-organization.md#founder) and [](06-licensing-and-legal.md#business-entity)), so any investor or securities offering would change who owns the business.
+
+### Other sources
+
+Personal savings, loans from family and friends, home equity, financing from the landlord or vendors, equipment financing, and gifts were not researched; does the owner want any of these considered?
+
+### Matching sources to the goals
+
+> **Suggestion (to confirm):** Each level in order might fit a different kind of source. The base goal might combine the owner's own contribution with a microloan or other debt. The stretch goals might be funded as cash flow, a later loan, or a campaign allows. The reserve months are part of every goal.
+>
+> **Confirm with:** The owner.
+
+### Open questions
+
+- How much will the owner contribute, as an amount or none?
+- Which funding sources will the owner accept or rule out?
+- What terms would the owner accept: rate, repayment period, collateral, and personal guarantee?
+- How will the funds be used at each level? The cost data holds the uses.
+- Can the owner's credit situation be stated in the plan?
+- Ask an attorney before any securities offering, and about how new owners would change the business entity (see [](06-licensing-and-legal.md#business-entity)).
+
+TODO: The owner's own contribution, chosen funding sources, and their terms are not yet stated. Add them here.
