@@ -693,13 +693,16 @@ monthly:
   - id: owner-pay
     level: base
     name: "Owner pay"
-    low: 0
-    expected: 0
-    high: 0
-    status: estimate
-    owner_input: true
-    source: "D-25: Space: cost categories"
-    notes: "No figure counted. The owner has not said whether to include it."
+    lines:
+      - {quantity: 26, unit_price: 3250, divisor: 12}
+    status: quote
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner is paid $3,250 every two weeks, starting at opening. Its reserve is 1 month at the base, 3 months total at stretch 1, 6 at stretch 2, and 9 at stretch 3."
+    reserve_months:
+      base:      {low: 1, expected: 1, high: 1}
+      stretch-1: {low: 2, expected: 2, high: 2}
+      stretch-2: {low: 3, expected: 3, high: 3}
+      stretch-3: {low: 3, expected: 3, high: 3}
   - id: marketing
     level: base
     name: "Ongoing marketing"
