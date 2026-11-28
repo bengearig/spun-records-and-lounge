@@ -114,6 +114,8 @@ Music always plays in the space, either from full records on the turntable or fr
 >
 > **Verify with:** each performing rights organization (ASCAP, BMI, SESAC, GMR) and SoundExchange, using their current terms.
 
+TODO: The owner expects that no music licensing is needed and notes that the exceptions in 17 U.S.C. section 110 may apply. This is the owner's statement and has not been verified. Reconcile this section with the cost data, which counts no music licensing.
+
 ### Open questions
 
 - How records played in the store are treated for licensing.

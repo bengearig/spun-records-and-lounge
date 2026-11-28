@@ -8,7 +8,7 @@ The one-time costs to open are listed by category and grouped into funding level
 categories
 ```
 
-> **Research (unverified):** These amounts come from the cost data file. Its figures are placeholders drawn from unverified research and the owner's working assumptions about floor area, seats, and display units. They are not quotes. Items with no researched figure are shown as zero and flagged as owner input, so every total understates the real cost.
+> **Research (unverified):** These amounts come from the cost data file. Most are the owner's own estimates from the owner's fill-in sheet and a few are quotes. The rest are placeholders from unverified research or are shown as zero and flagged as owner input, so every total still understates the real cost. Estimates are not quotes.
 >
 > Sources: the cost data file, whose items each name their research; see [](11-appendices.md#startup-cost-detail).
 >
@@ -56,7 +56,7 @@ level id=stretch-3
 
 ### Cash reserve
 
-The reserve is months of operating costs held back, with 3 months at the base and 3 more at each stretch level.
+The reserve is months of operating costs held back. Most items follow the schedule that adds months at each level, and owner pay has its own, shorter schedule. The table shows the months held for each item.
 
 ```costs
 reserve
@@ -66,12 +66,13 @@ reserve
 
 - The site and its square footage.
 - The landlord's build-out allowance and a contractor bid.
-- The opening inventory budget and the split of new and used records.
-- Seats and display units.
+- Quotes to replace the owner's estimates.
+- The split of new and used records in the opening inventory.
 - Equipment the owner already has.
 - Insurance quotes.
-- Music licensing quotes.
-- The number of months of reserve.
+- Budgets for the opening event and initial marketing.
+- Whether domain and hosting costs for the website should be counted.
+- Whether music licensing is needed; see [](06-licensing-and-legal.md#music-licensing).
 - Whether the hemp license fees apply; see [](06-licensing-and-legal.md#hemp-drink-licensing).
 
 ## Revenue Model

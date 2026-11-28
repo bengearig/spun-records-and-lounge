@@ -26,7 +26,7 @@ Spun is planned in stages, with a base version funded first and stretch goals ad
 goals
 ```
 
-> **Research (unverified):** These amounts come from the cost data file. Its figures are placeholders drawn from unverified research and the owner's working assumptions about floor area, seats, and display units. They are not quotes. Items with no researched figure are shown as zero and flagged as owner input, so every total understates the real cost.
+> **Research (unverified):** These amounts come from the cost data file. Most are the owner's own estimates from the owner's fill-in sheet and a few are quotes. The rest are placeholders from unverified research or are shown as zero and flagged as owner input, so every total still understates the real cost. Estimates are not quotes.
 >
 > Sources: the cost data file, whose items each name their research; see [](11-appendices.md#startup-cost-detail).
 >
