@@ -646,23 +646,21 @@ monthly:
   - id: music-licensing
     level: base
     name: "Music licensing"
-    low: 30.42
-    expected: 83.33
-    high: 375
+    low: 0
+    expected: 0
+    high: 0
     status: estimate
-    owner_input: true
-    source: "D-25: Licenses, legal, insurance, music licensing"
-    notes: "Annual $365 / $1,000 / $4,500 divided by 12, rounded to the cent."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner expects no music licensing is needed and notes that the exceptions in 17 U.S.C. section 110 may apply. This is the owner's statement and has not been verified."
   - id: pos-subscription
     level: base
     name: "Point-of-sale software"
     low: 0
-    expected: 49
-    high: 149
+    expected: 0
+    high: 0
     status: estimate
-    owner_input: true
-    source: "D-25: Equipment: point of sale"
-    notes: "Free tier, then paid tiers at $49 and $149 a month. Card processing fees are variable with sales and not included."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner said the point-of-sale software is included or self-provided, so no monthly cost is counted."
   - id: entity-annual-fee
     level: base
     name: "Business entity annual fee"
@@ -676,13 +674,12 @@ monthly:
   - id: utilities
     level: base
     name: "Utilities"
-    low: 0
-    expected: 0
-    high: 0
+    low: 350
+    expected: 450
+    high: 750
     status: estimate
-    owner_input: true
-    source: "D-25: Space: cost categories"
-    notes: "No figure found."
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner's monthly range. Knoxville Utilities Board deposits are in the utility deposits item."
   - id: payroll
     level: base
     name: "Staff wages"
@@ -696,13 +693,16 @@ monthly:
   - id: owner-pay
     level: base
     name: "Owner pay"
-    low: 0
-    expected: 0
-    high: 0
-    status: estimate
-    owner_input: true
-    source: "D-25: Space: cost categories"
-    notes: "No figure counted. The owner has not said whether to include it."
+    lines:
+      - {quantity: 26, unit_price: 3250, divisor: 12}
+    status: quote
+    source: "Owner's fill-in sheet, 2026-11-27 (D-33)"
+    notes: "The owner is paid $3,250 every two weeks, starting at opening. Its reserve is 1 month at the base, 3 months total at stretch 1, 6 at stretch 2, and 9 at stretch 3."
+    reserve_months:
+      base:      {low: 1, expected: 1, high: 1}
+      stretch-1: {low: 2, expected: 2, high: 2}
+      stretch-2: {low: 3, expected: 3, high: 3}
+      stretch-3: {low: 3, expected: 3, high: 3}
   - id: marketing
     level: base
     name: "Ongoing marketing"
