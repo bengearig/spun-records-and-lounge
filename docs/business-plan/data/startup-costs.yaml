@@ -1,37 +1,27 @@
-# Startup costs for Spun Records and Lounge (D-29, D-28).
+# Startup costs for Spun Records and Lounge (D-28, D-37).
 #
-# Every amount in this file is an unverified placeholder drawn from unverified
-# research (D-25). Nothing here is a quote. Each one is to be replaced with the
-# owner's own inputs (D-27); items flagged as owner input still need them.
+# Amounts whose source names the owner's fill-in sheet are the owner's own
+# estimates, quotes, or decisions (D-33). Items still flagged as owner input
+# keep placeholders from unverified research (D-25) or are zero, so every
+# total understates the real cost until the owner fills them in.
 #
-# Working assumptions (owner-chosen placeholders, not facts):
-# - Floor area by level: base 1,500 sq ft, stretch 1 adds 500 (2,000 total),
-#   stretch 2 adds 500 (2,500 total). Same site; no site is chosen (D-11).
+# Assumptions:
+# - Floor area is by level (see each level's sqft). No site is chosen (D-11).
 #   Low / expected / high mean price uncertainty at that size, not size.
-# - Seats at the base: 12 / 24 / 40 at $55 / $200 / $350 per seat. Each
-#   expansion adds a third of the base, rounded: 4 / 8 / 13 seats.
-# - Record display units at the base: 6 / 10 / 16 at $50 / $700 / $1,200 each.
-#   Each expansion adds 2 / 3 / 5 units.
-# - Rent: all-in $22.50 / $28.50 / $38.40 per sq ft per year (asking rents, not
-#   leases), divided by 12, times the sq ft the level adds.
-# - Build-out: $17 / $40 / $90 per sq ft times the sq ft that level builds.
-# - Security deposit: 1 / 3 / 6 months of rent on the space added at that level.
-# - Reserve months added: 3 at the base and 3 more at each stretch level, for
-#   low, expected, and high alike (running total 3 / 6 / 9 / 12).
+# - Seats are a third of the floor area at about 21 sq ft per seat, and each
+#   record display unit holds about 50 records.
+# - Reserve months are added per level (see the levels). Owner pay has its own
+#   schedule on the item.
 # - All drinks, including the contingent hemp license fees (D-15), are in the
-#   base. Live-music sound gear and listening stations are in stretch 3 with
-#   the wall mural.
+#   base. Live-music sound gear, listening stations, and the wall mural are in
+#   the last level.
 #
 # Left out (decisions still open):
 # - Oven and mixer for baked snacks.
 # - Debt service or loan repayments.
-# - Rent paid on added space while it is being built out.
-# - Any added utilities or insurance from expansion.
-# - Debt service is not modeled, card processing fees are not included, and
-#   rent on added space during its build-out is not modeled.
-#
-# Items with no researched figure are 0 / 0 / 0 and flagged as owner input.
-# Until the owner fills them in, every total is an understatement.
+# - Card processing fees.
+# - Rent on added space while it is being built out.
+# - Added utilities or insurance from expansion.
 
 levels:
   - id: base
